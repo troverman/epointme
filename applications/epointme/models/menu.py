@@ -8,7 +8,7 @@
 if request.function == 'index':
     response.title = 'epoint.me'
 else:
-    response.title = request.functionresponse.subtitle = ''
+    response.title = request.function
 response.logo = A(B('epoint.me'), _class="brand",_href="http://www.epoint.me/")
 
 ################################

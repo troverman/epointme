@@ -1,7 +1,7 @@
 {{extend 'layout.html'}}
 <style>
     #header-index-container{
-        background-color:rgb(235,240,240);
+        background-color:rgb(245,247,250);
         border-bottom:2px solid rgb(220,220,220);
     }
     #header-index{
@@ -18,69 +18,35 @@
 
 <div id="header-index-container">
     <div id="header-index">
-        <h3>virtual economy</h3>
-        <h5>rembember, value is subjective</h5>
-        <h5>anyone can create a market, and everyone valuates it through the exchange.</h5>
-        <h5>transparent, crowd owned, value based economy. oh boy. voetr eneabled.</h5>
-        <h5>value exchange</h5>
-        <h5>create a market, what is value?</h5>
-        <h5>cracking open the idea of fiat based value</h5>
+		<h3>{{=market_from_url['title']}}</h3>
     </div>
 </div>
-
-<br>
-<div>
-    <table style="margin-left:auto;margin-right:auto;">
-        <tr>
-            <td><p class="lead">one</p></td>
-            <td><p class="lead">two</p></td>
-            <td><p class="lead">three</p></td>
-        </tr>
-    </table>
-</div>
-
-<br><br>
-
-<div style="background-color:rgb(42,45,37)">
-    <br><br><br>
-    <p style="text-align:center;color:rgb(200,200,200)">hello</p> 
-    <br><br><br>
-</div>
-
-<br><br><br>
-
-<div>
-    <table style="margin-left:auto;margin-right:auto;">
-        <tr>
-            <td><p class="lead"><a href="/about/">about</a></p></td>
-            <td><p class="lead"><a href="/mission/">mission</a></p></td>
-            <td><p class="lead"><a href="/transparency/">transparency</a></p></td>
-        </tr>
-    </table>
-</div>
-    <p style="text-align:center;" class="lead"><a href="/exchange/">exhange</a></p>
-    <p style="text-align:center;" class="lead"><a href="/markets/">markets</a></p>
-    <p style="text-align:center;" class="lead"><a href="/marketplace/">marketplace</a></p>
-    <p style="text-align:center;" class="lead"><a href="/pointbank/">pointbank</a></p>
-
-
 <div class="centered-width">
-    <a href="/transparency/">transparent transaction logs; open currency</a>
+    <br>
+	<p class="lead">{{=market_from_url['description']}}</p>
+	<p class="lead"><a>market exchange</a></p>
+    <p class="lead">stats</p>
 
+    <p class="lead">market circulation size: {{=market_circulation_size}}</p>
     <br>
-    floating point value
-    <br>
-    usd-anything
-    <br>
-    money monopoly monopoly mooney
-    <br>
+    <p class="lead">market circulation size / capita: {{=market_circulation_size/len(db(db.auth_user).select())}}</p>
+
+
+    <p class="lead">transactions</p>
+
+    {{for transaction in transaction_array:}}
+        {{=transaction[0]['username']}}
+        {{=transaction[1]['username']}}
+        {{=transaction[2]}}
+        {{=transaction[3]}}
+        <br><br>
+
+    {{pass}}
 
     <script type="text/javascript">
     {{an_array=[]}}
-    {{import time}}
-    {{array = [1,2,3,4,5]}}
-    {{for counter, value in enumerate(array):}}
-        {{an_array.append([ value*1000, int(value) ])}}
+    {{for counter, transaction in enumerate(transaction_array):}}
+        {{an_array.append([ transaction[2], int(transaction[3]) ])}}
     {{pass}}
 
     $(function() {
@@ -150,24 +116,11 @@
             }
         });
     });
-</script>
+	</script>
     
-<div>
-    <div id="placeholder" style="width:75%;height:250px;display: table;margin: 0 auto;"></div>
+	<div>
+	    <div id="placeholder" style="width:75%;height:250px;display: table;margin: 0 auto;"></div>
+	</div>
 </div>
-    <p style="text-align:center;" class="lead"><a href="/exchange/">exhange</a></p><hr>
-    <p style="text-align:center;" class="lead"><a href="/markets/">markets</a></p><hr>
-    <p style="text-align:center;" class="lead"><a href="/marketplace/">marketplace</a></p><hr>
-    <div id="project-list-container">
-        {{for x in range(5):}}
-        <div id="project-list-item">
-            <a href="/project/"><p style="text-align:center;">item</p></a>
-            <a href="/project/"><img class="img-polaroid" src="/epointme/static/images/epointme-logo.png"/></a>
-        </div>
-        {{pass}}
-        <br><br>
-    </div>
-    <p style="text-align:center;" class="lead"><a href="/pointbank/">pointbank</a></p><hr>
 
-</div>
 <br><br><br><br>

@@ -50,22 +50,21 @@
       min-height: 100%;
       height: auto !important;
       height: 100%;
-      margin: 0 auto -28px;
+      margin: 0 auto -56px;
     }
     .footer{
       height:28px;
       padding-left:5%;
       padding-right:5%;
-      padding-bottom:10px;   
     }
     .modal.fade {
-      top: 20%;
+      top: 7%;
       -webkit-transition: opacity 0.3s linear;
       -moz-transition: opacity 0.3s linear;
       -o-transition: opacity 0.3s linear;
       transition: opacity 0.3s linear;
     }
-    .modal.fade.in {top: 20%;}       
+    .modal.fade.in {top: 7%;}       
     .navbar .btn-navbar {display:none;}
     a{color:rgb(71,122,173);}
     a:hover{text-decoration: none;color:rgb(51,102,153);}
@@ -92,14 +91,14 @@
       color:rgb(235,235,235);
     }
     #login-area:hover{color:rgb(255,255,255)}
-    #logo-inlrn{
+    #logo-epoint{
       float:left;
-      height:50px;
+      height:30px;
       padding-top:2px;
       padding-right:10px;
       padding-bottom:13px;
     }
-    #logo-inlrn:hover{background-color:rgb(56,107,158);}
+    #logo-epoint:hover{background-color:rgb(56,107,158);}
     #main-content{border-top:3px solid rgb(201,211,231);}
     #member-icon-area{
       float:right;
@@ -122,23 +121,12 @@
       margin-right:5%;
     }
     #site-header-container{
-      background-image:-webkit-gradient(linear, 0 100%, 0 0, from(rgb(51,102,153)), to(rgb(51,102,153)));
-      background-image:-webkit-linear-gradient(rgb(51,102,153), rgb(51,102,153));
-      background-image:-moz-linear-gradient(rgb(51,102,153), rgb(51,102,153));
-      background-image:-ms-linear-gradient(rgb(51,102,153), rgb(51,102,153));
-      background-image:-o-linear-gradient(rgb(51,102,153), rgb(51,102,153));
-      background-image:linear-gradient(rgb(51,102,153), rgb(51,102,153));
-      border-bottom:1px solid rgb(210,210,210);
-      height:67px;
+      background-color:rgb(86,124,181);
+      background-image:linear-gradient(to bottom, rgb(86,124,181), rgb(87,125,180));
     }
     #site-footer-container{
-      background-image:-webkit-gradient(linear, 0 100%, 0 0, from(rgb(51,102,153)), to(rgb(51,102,153)));
-      background-image:-webkit-linear-gradient(rgb(51,102,153), rgb(51,102,153));
-      background-image:-moz-linear-gradient(rgb(51,102,153), rgb(51,102,153));
-      background-image:-ms-linear-gradient(rgb(51,102,153), rgb(51,102,153));
-      background-image:-o-linear-gradient(rgb(51,102,153), rgb(51,102,153));
-      background-image:linear-gradient(rgb(51,102,153), rgb(51,102,153));
-      border-top:3px solid rgb(201,211,231);
+      background-color:rgb(86,124,181);
+      background-image:linear-gradient(to bottom, rgb(86,124,181), rgb(87,125,180));
     }
     #site-footer-container a{color:rgb(211,221,241);}
     #site-footer-container a:hover{color:rgb(255,255,255);}
@@ -173,14 +161,14 @@
         <div class="" id="site-header">
           <div id="logo-container">
             <a href="/">
-              <img id="logo-inlrn" src="/inlrn/static/images/inlrnlogo.png" />
+              <img id="logo-epoint" src="/epointme/static/images/epoint-logo.png" />
             </a>
           </div>
           <div id="header-icons" style="margin-top:30px;margin-left:3px;float:left;">
-            <a href="/discover"><i id="discover-icon" class="fa fa-random"></i></a>
-            <a href="/courses"><i id="courses-icon" class="fa fa-pencil"></i></a>
-            <a href="/academies"><i id="academies-icon" class="fa fa-th"></i></a>
-            <a href="/feed"><i id="feed-icon" class="fa fa-align-justify"></i></a>
+            <a href="/discover/"><i id="discover-icon" class="fa fa-random"></i></a>
+            <a href="/markets/"><i id="courses-icon" class="fa fa-pencil"></i></a>
+            <a href="/marketplace/"><i id="academies-icon" class="fa fa-th"></i></a>
+            <a href="/feed/"><i id="feed-icon" class="fa fa-align-justify"></i></a>
           </div>
           <div id="header-search" style="float:left;margin-left:20px;margin-top:23px;">
             <div class="input-append">
@@ -262,14 +250,14 @@
         <div class="modal fade" id="login-or-signup" style="display:none;">
           <div class="modal-header" id="login-or-signup-header">
             <a class="close" data-dismiss="modal">×</a>
-            <h3>Login or Signup</h3>
+            <h3>login or signup</h3>
           </div>
           <br>
           <div class="modal-body" style="">
             <div id="external-login" style="display: table;margin: 0 auto;">
-              <a id="facebook-login"><img src="inlrn/static/images/facebook-login.png" style="width:64px"/></a>
-              <a id="twitter-login"><img src="inlrn/static/images/twitter-login.png" style="width:64px"/></a>
-              <a id="google-login"><img src="inlrn/static/images/google-login.png" style="width:64px"/></a> 
+              <a id="facebook-login"><img src="/epointme/static/images/facebook-login.png" style="width:64px"/></a>
+              <a id="twitter-login"><img src="/epointme/static/images/twitter-login.png" style="width:64px"/></a>
+              <a id="google-login"><img src="/epointme/static/images/google-login.png" style="width:64px"/></a> 
             </div>
             <br><br>
             <ul style="float:left;margin-left:5%"class="nav nav-tabs" id="profile-tab" data-tabs="tabs">
@@ -301,11 +289,13 @@
         <div class="footer-container">
           <div class="pull-left" id="footer-links">&#169; {{=request.now.year}} <a href="/">epoint.me</a></div>
           <div class="pull-right" id="footer-links">
-            <a href="/about">about</a>
-            <a href="/faq">faq</a>
-            <a href="/mission">mission</a>
-            <a href="/pointbank">point bank</a>
-            <a href="www.voetr.com/committee/epointme">voetr committee</a>
+            <a href="/about/">about</a>,
+            <a href="/exchange/">exchange</a>,
+            <a href="/faq/">faq</a>,
+            <a href="/markets/">markets</a>,
+            <a href="/marketplace/">marketplace</a>,
+            <a href="/mission/">mission</a>,
+            <a href="/transparency/">transparency</a>
           </div>
         </div>
       </div>
@@ -316,17 +306,17 @@
     $("#login-or-signup" ).draggable({handle:"#login-or-signup-header", cursor:"move"}); 
     $("#logo-inlrn").on({
       "mouseover" : function() {
-        this.src = '/inlrn/static/images/inlrn_hover.png';
+        this.src = '/epointme/static/images/epoint-logo.png';
       },
       "mouseout" : function() {
-        this.src='/inlrn/static/images/inlrnlogo.png';
+        this.src='/epointme/static/images/epoint-logo.png';
       }
     }); 
 
-    {{if request.function=='academies':}}
+    {{if request.function=='marketplace':}}
       $("#academies-icon").css('color','rgb(255,255,255)');
     {{pass}}
-    {{if request.function=='courses':}}
+    {{if request.function=='markets':}}
       $("#courses-icon").css('color','rgb(255,255,255)');
     {{pass}}
     {{if request.function=='discover':}}

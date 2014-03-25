@@ -1,0 +1,25 @@
+{{extend 'layout.html'}}
+<style>
+    #header-index-container{
+        background-color:rgb(220,225,225);
+        border:2px solid rgb(180,180,180);
+    }
+    #header-index{
+        margin-left:6%;
+        margin-right:6%;
+    }
+    #project-list-container{text-align:center;width:100%;}
+    #project-list-item{border:2px solid rgb(180,180,180);display:inline-block;}
+</style>
+<div id="header-index-container">
+    <div id="header-index">
+    	<h1>transparency</h1>	
+    </div>
+</div>
+
+<div class="centered-width">
+	{{for transaction in transaction_array:}}
+		<p class="lead">{{=transaction}}</p>
+	{{pass}}
+</div>
+<br><br><br><br>

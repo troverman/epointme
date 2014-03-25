@@ -1,0 +1,34 @@
+{{extend 'layout.html'}}
+<style>
+    #header-index-container{
+        background-color:rgb(235,240,240);
+        border-bottom:2px solid rgb(220,220,220);
+    }
+    #header-index{
+        margin-left:6%;
+        margin-right:6%;
+    }
+    #project-list-container{text-align:center;width:100%;}
+    #project-list-item{border:2px solid rgb(180,180,180);display:inline-block;}
+</style>
+
+<div id="header-index-container">
+    <div id="header-index">
+        <br><h3>exchange</h3><br>
+    </div>
+</div>
+
+<div class="centered-width">
+	<a class="btn">+ new enrty</a>
+	{{for market in market_list:}}
+		<h3><a href="/market/{{=market['title']}}/">{{=market['title']}}</a></h3>
+	{{pass}}
+	<h4>put / sell</h4>
+	{{for item in exhange_list:}}
+		{{=item}}<br><br>
+	{{pass}}
+	<h4>call / buy</h4>
+	{{for item in exhange_list:}}
+		{{=item}}<br><br>
+	{{pass}}
+</div>

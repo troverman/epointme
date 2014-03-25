@@ -1,0 +1,117 @@
+{{extend 'layout.html'}}
+<style>
+#contentwrapper{width: 100%;}               
+#content { //margin: 0 280px 0 180px; /*Margins for content column. Should be "0 RightColumnWidth 0 LeftColumnWidth*/}
+#right { 
+
+        float: right;
+        width: 255px;
+        border-left:1px solid rgb(238,238,238);
+        border-bottom:1px solid rgb(238,238,238);
+        padding-left:15px;
+        padding-right:15px;
+        padding-bottom:15px;
+}
+#left { 
+        float: left;
+        width: 175px;
+        border-right:1px solid rgb(238,238,238);
+        border-bottom:1px solid rgb(238,238,238);
+        padding-left:15px;
+        padding-bottom:15px; 
+}
+#collapsed-left {
+        float: left;
+        border-bottom:1px solid rgb(238,238,238);
+        border-right:1px solid rgb(238,238,238);
+        padding-left:7px;
+        padding-right:7px;
+}
+
+#collapsed-left:hover {
+        float: left;
+        padding-left:7px;
+        padding-right:7px;
+        background-color:rgb(245,245,248);
+        border-right:1px solid rgb(235,235,238);
+        border-bottom:1px solid rgb(235,235,238)
+}
+#collapse-left {
+        padding-left:5px;
+        padding-right:5px;
+        float:right;
+        border-left:1px solid rgb(238,238,238);
+        border-bottom:1px solid rgb(238,238,238);
+}
+#collapse-left:hover {
+        padding-left:5px;
+        padding-right:5px;
+        float:right;
+        background-color:rgb(245,245,248);
+        border-left:1px solid rgb(235,235,238);
+        border-bottom:1px solid rgb(235,235,238) 
+}
+</style>
+<div class="centered-width">
+	<h1>marketplace</h1>
+
+<div id="left">
+	filter1<br>
+        filter2<br>
+        filter3<br>
+        filter4<br>
+        filter5<br>
+
+	{{for x in range(100):}}
+	<p> tag {{=x}}</p>
+	{{pass}}
+</div>
+<div id="right">
+        <a data-toggle="modal" href="#new-item" class="btn">+ new item</a>
+	<h3>promoted</h3>
+	{{for x in range(3):}}
+		<h4>thread {{=x}}</h4>
+	{{pass}}
+</div>
+<div id="content">
+	<h3>nearby deliveryfor items</h3>
+	{{for x in range(3):}}
+		<h4>thread {{=x}}</h4>
+	{{pass}}
+
+	<h3>epoint verified items</h3>
+	<p>pointbank fee / fee</p>
+	{{for x in range(3):}}
+		<h4>thread {{=x}}</h4>
+	{{pass}}
+	<h3>items</h3>
+	{{for item_post in item_post_list:}}
+		<h4><a>{{=item_post['title']}}</a></h4>
+	{{pass}}
+</div>
+</div>
+<div style="clear:both"></div>
+<br><br><br><br>
+
+<div class="modal fade" id="new-item" style="display:none;">
+    <div class="modal-header" id="new-item-header">
+        <a class="close" data-dismiss="modal">×</a>
+        <h3>+ new item</h3>
+    </div>
+    <br>
+    <div class="modal-body" style="">
+        <p class="lead">description and such
+        <div id="external-login" style="display: table;margin: 0 auto;">
+        <a id="facebook-login">table link 1</a>
+        <a id="twitter-login">table link 2</a>
+        <a id="google-login">table link 3</a> 
+        </div>
+    </div>
+    <div class="modal-footer">
+        footer
+    </div>
+</div> 
+
+<script>
+    $("#new-item").draggable({handle:"#new-item-header", cursor:"move"}); 
+</script>
