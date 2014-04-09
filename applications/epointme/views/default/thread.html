@@ -1,0 +1,135 @@
+{{extend 'layout.html'}}
+<style>
+a{cursor: pointer;}    
+#content { 
+	//width: 60%;
+	//float: right;
+	margin-left:15px;
+}
+#right { 
+    border-left:1px solid rgb(238,238,238);
+    width: 280px;
+    float: right;
+}
+label#thread_comment_comment_content__label{display:none}
+#cke_1_top{display:none;}
+#thread-content{
+    margin-left:15px;
+    margin-right:15px;
+}
+</style>
+
+
+<script>
+    function set_editor_view(value) {
+        var editor = CKEDITOR.instances.thread_thread_content;
+        if ( value == 'Maximize'){
+            editor.execCommand('maximize'); 
+        }
+        if ( value == 'Source'){
+            editor.execCommand('source'); 
+        }  
+        if ( value == 'ShowBlocks'){
+            editor.execCommand('showblocks'); 
+        }      
+    }
+    $(document).ready(function() {     
+        $(".dark-tooltip").tooltip();
+        $(".light-tooltip").popover();
+        $("#close-promoted").click(function() {
+            $("#index-notice").toggle();
+        });
+        $("#close-ad").click(function() {
+            $("#ad_block").toggle();
+        });  
+        $("#expand").click(function() {
+            $("#form").slideToggle();
+        });
+        CKEDITOR.replace( 'thread_comment_comment_content',{});  
+   	});        
+</script>
+<br>
+
+
+
+<div id="right">
+    <form style="display:none"><input id ="thread_like" name="thread_like-{{=thread_by_url[0]['id']}}" value="{{=thread_by_url[0]['id']}}" type="hidden"/></form> 
+    <form style="display:none"><input id ="thread_dislike" name="thread_dislike-{{=thread_by_url[0]['id']}}" value="{{=thread_by_url[0]['id']}}" type="hidden"/></form>                                 
+    <h2 style="float:left;margin-left:15px;"><a>0</a></h2>
+    <div style="float:right;margin-right:15px;" id="thread-item-dislike-{{=thread_by_url[0]['id']}}"><a style="margin-left:15px;" onclick="ajax('ajax_dislike_thread', ['thread_dislike-{{=thread_by_url[0]['id']}}'], ':eval');">dislike</a></div>
+    <div style="float:right;margin-right:15px;" id="thread-item-like-{{=thread_by_url[0]['id']}}"><a style="margin-left:15px;" onclick="ajax('ajax_like_thread', ['thread_like-{{=thread_by_url[0]['id']}}'], ':eval');">like</a></div>
+    <br><br>
+    <h5 style="float:right;margin-right:15px;"><a data-toggle="modal" href="#thread-share">share</a></h5>
+    <br><br>
+    <h5 style="float:right;margin-right:15px;"><a data-toggle="modal" href="#thread-stats">stats</a></h5>
+
+    <div style="clear:both;"></div>
+    <hr><br>
+    <ul style="float:left;padding-left:15px;"class="nav nav-tabs" id="thread-tab" data-tabs="tabs">
+        <li><a href="#promoted-thread" data-toggle="tab">promoted</a></li>
+        <li ><a href="#similar-thread" data-toggle="tab">similar</a></li>
+	</ul> 
+    <br><br><br>
+    <div class="tab-content">
+        <div class="tab-pane active" id="collection-info">
+            <div style="margin-left:15px;">
+                el oh el info
+            </div>
+        </div>
+        <div class="tab-pane" id="promoted-thread">
+        <h4 style="margin-left:15px;">promoted threads</h4><hr>
+        {{for thread in range(10):}}
+            <div style="margin-left:15px;margin-right:15px;">
+                <a href="/thread/" data-trigger="hover" class="light-tooltip" data-placement="left" title="thread info"><h5>promoted thread</h5></a>
+            </div>
+        {{pass}}
+        </div>
+        <div class="tab-pane" id="similar-thread">
+            <h4 style="margin-left:15px;">similar threads</h4><hr>
+            {{for thread in similar_threads:}}
+                <div style="margin-left:15px;margin-right:15px;">
+                    <a href="/thread/{{=thread['url_title']}}" data-trigger="hover" class="light-tooltip" data-placement="left" title="thread info"><h5>{{=thread['title']}}</h5></a>
+                </div>
+            {{pass}}
+        </div>
+    </div>
+
+</div>
+
+<div id="content">
+
+    <h3 style="float:left;margin-left:15px;">{{=thread_by_url[0]['title']}}</h3>
+    <a data-toggle="modal" href="#thread-member" style="float:right;margin-right:15px;margin-top:27px;">anonymous</a>
+    <br><br>
+    <hr>
+
+    <div style="margin-left:15px;">
+        <i style="float:left;margin-left:15px;" class="icon-tag"></i>
+        <div class="dropdown" style="float:left;margin-left:15px;">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">tags<b style="margin-right:5px;"class="caret"></b></a>
+            <ul class="dropdown-menu">
+                {{for tag in thread_tag:}}
+                    <li><a href="/tag/{{=tag['tag']}}">{{=tag['tag']}}</a></li>
+                {{pass}}
+            </ul>
+        </div>
+    </div> 
+<br><hr><br>
+
+{{item_content=thread_by_url[0]['item_content']}}
+<div id="thread-content">
+    {{=XML(item_content,
+        sanitize=False,
+        permitted_tags=['a', 'b', 'blockquote', 'br/', 'i', 'li', 'ol', 'ul', 'p', 'cite', 'code', 'pre', 'img/'],
+        allowed_attributes={
+        	'a':['href', 'title'], 
+        	'img':['src', 'alt'], 
+        	'blockquote':['type']
+        }
+    )}}
+</div>
+
+<br>
+<br>
+<hr>
+</div>

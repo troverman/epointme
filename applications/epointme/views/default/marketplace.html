@@ -1,5 +1,13 @@
 {{extend 'layout.html'}}
 <style>
+    #header-index-container{
+        background-color:rgb(233,233,233);
+        border-bottom:1px solid rgb(201,201,201);
+    }
+    #header-index{
+        margin-left:6%;
+        margin-right:6%;
+    }
 #contentwrapper{width: 100%;}               
 #content { //margin: 0 280px 0 180px; /*Margins for content column. Should be "0 RightColumnWidth 0 LeftColumnWidth*/}
 #right { 
@@ -52,41 +60,69 @@
         border-bottom:1px solid rgb(235,235,238) 
 }
 </style>
+<script>
+$(document).ready(function(){                                                         
+    $("#collapse-left").click(function() {  
+        $("#left").fadeToggle(300);
+        $("#collapsed-left").delay(300).fadeToggle(300);
+    });
+    $("#open-left").click(function() {  
+        $("#collapsed-left").fadeOut(300);  
+        $("#left").delay(300).fadeIn(300);  
+    });
+    $("#close-ad").click(function() {       
+        $("#ad_block").fadeToggle();        
+    });
+    $("#view-list").click(function() {     
+        alert('hello list');  
+    });
+    $("#view-table").click(function() {     
+        alert('hello table');  
+    });
+});
+</script>   
+<div id="header-index-container">
+    <div id="header-index">
+        <br><h3 style="color:rgb(80, 84, 92);font-size:45px;">marketplace</h3><br>
+    </div>
+</div>
 <div class="centered-width">
-	<h1>marketplace</h1>
-
+<div id="collapsed-left" style="display:none;">
+    <a id="open-left">
+        <div style="">
+            <h5 title="expand" style="margin:0px;padding:3px;"> >> </h5>
+        </div>
+    </a>
+</div>
 <div id="left">
-	filter1<br>
-        filter2<br>
-        filter3<br>
-        filter4<br>
-        filter5<br>
-
-	{{for x in range(100):}}
-	<p> tag {{=x}}</p>
+    <a id="collapse-left"> <h5 style="margin:0px;padding:3px;" title="minimize"> << </h5> </a>
+    <p>show only certain filters</p>
+	{{for tag in combined_count_and_tag_array:}}
+    	<p>{{=tag[0]['tag']}}</p>
+        <p>{{=tag[1]}}</p>
 	{{pass}}
 </div>
 <div id="right">
-        <a data-toggle="modal" href="#new-item" class="btn">+ new item</a>
-	<h3>promoted</h3>
-	{{for x in range(3):}}
-		<h4>thread {{=x}}</h4>
-	{{pass}}
+    <a data-toggle="modal" href="#new-item" class="btn">+ new item</a><br><br>
+    <div style="border:1px solid rgb(235,235,235);background-color:rgb(246,250,255);padding:15px;" id="ad_block">
+        <a class="close" id="close-ad" href="#">&times;</a>
+        <div id="promoted_list">
+            {{for thread in range(5):}}
+                <a href="/thread/{{=thread}}"><h5>promoted {{=thread}}</h5></a>
+            {{pass}}          
+        </div>
+    <br>
+    </div>
 </div>
 <div id="content">
-	<h3>nearby deliveryfor items</h3>
-	{{for x in range(3):}}
-		<h4>thread {{=x}}</h4>
-	{{pass}}
-
+	<!--<h3>nearby deliveryfor items</h3>
 	<h3>epoint verified items</h3>
-	<p>pointbank fee / fee</p>
-	{{for x in range(3):}}
-		<h4>thread {{=x}}</h4>
-	{{pass}}
-	<h3>items</h3>
+    <br><br>-->
+    <a id="view-list"><i class="icon-align-justify"></i></a>
+    <a id="view-table"><i class="icon-th"></i></a>
+
 	{{for item_post in item_post_list:}}
-		<h4><a>{{=item_post['title']}}</a></h4>
+		<h4><a href="/thread/{{=item_post['url_title']}}">{{=item_post['title']}}</a></h4>
 	{{pass}}
 </div>
 </div>
@@ -100,12 +136,7 @@
     </div>
     <br>
     <div class="modal-body" style="">
-        <p class="lead">description and such
-        <div id="external-login" style="display: table;margin: 0 auto;">
-        <a id="facebook-login">table link 1</a>
-        <a id="twitter-login">table link 2</a>
-        <a id="google-login">table link 3</a> 
-        </div>
+        {{=form_create_marketplace_item}}
     </div>
     <div class="modal-footer">
         footer

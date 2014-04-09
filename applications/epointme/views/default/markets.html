@@ -1,8 +1,8 @@
 {{extend 'layout.html'}}
 <style>
     #header-index-container{
-        background-color:rgb(235,240,240);
-        border-bottom:2px solid rgb(220,220,220);
+        background-color:rgb(233,233,233);
+        border-bottom:1px solid rgb(201,201,201);
     }
     #header-index{
         margin-left:6%;
@@ -41,12 +41,7 @@
     </div>
     <br>
     <div class="modal-body" style="">
-        <p class="lead">description and such
-        <div id="external-login" style="display: table;margin: 0 auto;">
-        <a id="facebook-login">table link 1</a>
-        <a id="twitter-login">table link 2</a>
-        <a id="google-login">table link 3</a> 
-        </div>
+        {{=form_create_market}}
     </div>
     <div class="modal-footer">
         footer

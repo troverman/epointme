@@ -1,13 +1,18 @@
 {{extend 'layout.html'}}
 <style>
     #header-index-container{
-        background-color:rgb(235,240,240);
-        border-bottom:2px solid rgb(220,220,220);
+        background-color:rgb(233,233,233);
+        border-bottom:1px solid rgb(201,201,201);
     }
     #header-index{
         margin-left:6%;
         margin-right:6%;
     }
+    #share-footer{
+    background-color:rgb(247,247,247);
+    border-top:1px solid rgb(225, 225, 225);
+    }
+    #share-footer-container{margin-left:5%;margin-right:5%;}
     #project-list-container{text-align:center;width:100%;}
     #project-list-item{border:2px solid rgb(180,180,180);display:inline-block;}
 </style>
@@ -17,14 +22,14 @@
 <script language="javascript" type="text/javascript" src="{{=URL(request.application,'static','js/jquery.thumbnailScroller.js')}}"></script>
 
 <div id="header-index-container">
-    <div id="header-index">
-        <h3>virtual economy</h3>
-        <h5>rembember, value is subjective</h5>
-        <h5>anyone can create a market, and everyone valuates it through the exchange.</h5>
-        <h5>transparent, crowd owned, value based economy. oh boy. voetr eneabled.</h5>
-        <h5>value exchange</h5>
-        <h5>create a market, what is value?</h5>
-        <h5>cracking open the idea of fiat based value</h5>
+    <div id="header-index"><br>
+        <img style="width:500px;height:500px;" class="img-polaroid" src="/epointme/static/images/noimage-icon.png"/>
+        <p class="lead">virtual economy</p>
+        <p class="lead">value is subjective.</p>
+        <p class="lead">anyone can create a market, and everyone valuates it through the exchange.</p>
+        <p class="lead">transparent, crowd owned, value based economy.</p>
+        <p class="lead">create a market</p>
+        <p class="lead">cracking open the idea of fiat based value.</p>
     </div>
 </div>
 
@@ -32,18 +37,18 @@
 <div>
     <table style="margin-left:auto;margin-right:auto;">
         <tr>
-            <td><p class="lead">one</p></td>
-            <td><p class="lead">two</p></td>
-            <td><p class="lead">three</p></td>
+            <td><p class="lead">subjective value</p></td>
+            <td><p class="lead">value exchange</p></td>
+            <td><p class="lead">what is valueable to you?</p></td>
         </tr>
     </table>
 </div>
 
 <br><br>
 
-<div style="background-color:rgb(42,45,37)">
+<div style="background-color:rgb(68, 66, 93)">
     <br><br><br>
-    <p style="text-align:center;color:rgb(200,200,200)">hello</p> 
+    <p style="text-align:center;color:rgb(200,200,200)">value</p> 
     <br><br><br>
 </div>
 
@@ -58,22 +63,40 @@
         </tr>
     </table>
 </div>
-    <p style="text-align:center;" class="lead"><a href="/exchange/">exhange</a></p>
-    <p style="text-align:center;" class="lead"><a href="/markets/">markets</a></p>
-    <p style="text-align:center;" class="lead"><a href="/marketplace/">marketplace</a></p>
-    <p style="text-align:center;" class="lead"><a href="/pointbank/">pointbank</a></p>
 
+    <p style="text-align:center;" class="lead"><a href="/exchange/">exhange</a></p><hr>
+    <p style="text-align:center;" class="lead"><a href="/markets/">markets</a></p><hr>
+    <p style="text-align:center;" class="lead"><a href="/marketplace/">marketplace</a></p><hr>
+    <div id="project-list-container">
+        {{for x in range(5):}}
+            <div id="project-list-item">
+                <a href="/marketplace/"><p style="text-align:center;">item</p></a>
+                <a href="/marketplace/"><img class="img-polaroid" src="/epointme/static/images/noimage-icon.png"/></a>
+            </div>
+        {{pass}}
+        <br><br>
+    </div>
+    <p style="text-align:center;" class="lead"><a href="/pointbank/">pointbank</a></p><hr>
+
+
+    <p class="lead">epoint.me is a value market</p>
+    <p class="lead">epoint.me valuates us all</p>
+
+
+
+<div style="background-color:rgb(68, 66, 93)">
+    <br><br><br>
+    <p style="text-align:center;color:rgb(200,200,200)">money monopoly monopoly mooney</p> 
+    <p style="text-align:center;color:rgb(200,200,200)">money monopoly monopoly mooney</p> 
+    <p style="text-align:center;color:rgb(200,200,200)">money monopoly monopoly mooney</p> 
+    <p style="text-align:center;color:rgb(200,200,200)">money monopoly monopoly mooney</p> 
+
+    <br><br><br>
+</div>
 
 <div class="centered-width">
-    <a href="/transparency/">transparent transaction logs; open currency</a>
-
-    <br>
-    floating point value
-    <br>
-    usd-anything
-    <br>
-    money monopoly monopoly mooney
-    <br>
+    <br><br><br>
+    <a href="/transparency/" class="lead">transparent transaction logs; open currency</a>
 
     <script type="text/javascript">
     {{an_array=[]}}
@@ -150,24 +173,36 @@
             }
         });
     });
-</script>
-    
-<div>
-    <div id="placeholder" style="width:75%;height:250px;display: table;margin: 0 auto;"></div>
-</div>
-    <p style="text-align:center;" class="lead"><a href="/exchange/">exhange</a></p><hr>
-    <p style="text-align:center;" class="lead"><a href="/markets/">markets</a></p><hr>
-    <p style="text-align:center;" class="lead"><a href="/marketplace/">marketplace</a></p><hr>
-    <div id="project-list-container">
-        {{for x in range(5):}}
-        <div id="project-list-item">
-            <a href="/project/"><p style="text-align:center;">item</p></a>
-            <a href="/project/"><img class="img-polaroid" src="/epointme/static/images/epointme-logo.png"/></a>
-        </div>
-        {{pass}}
-        <br><br>
+    </script>
+    <div>
+        <div id="placeholder" style="width:75%;height:250px;display: table;margin: 0 auto;"></div>
     </div>
-    <p style="text-align:center;" class="lead"><a href="/pointbank/">pointbank</a></p><hr>
+    <br><br><br>
+</div>
+
+<div style="background-color:rgb(68, 66, 93)">
+    <br><br><br>
+    <p style="text-align:center;color:rgb(200,200,200)">value</p> 
+    <br><br><br>
+</div>
+
+<div class="centered-width">
+    <p class="lead">content</p>
+    <p class="lead">content</p>
+    <p class="lead">content</p>
+    <p class="lead">content</p>
+    <p class="lead">content</p>
 
 </div>
+
+<div id="share-footer">
+    <div id="share-footer-container">
+        <p class="lead" style="float:left;">share plox</p>
+        <p style="float:right;" class="lead">get the app</p><br>
+        <a style="float:right;" href=""><img class="social" style="height:48px;" src="/epointme/static/images/app_store_icon.png" /></a>
+        <a style="float:right;" href=""><img class="social" style="height:48px;" src="/epointme/static/images/android_marketplace_icon.png" /></a>
+    </div>
+    <div style="clear:both"></div>
+</div>
+
 <br><br><br><br>

@@ -77,8 +77,20 @@ db.define_table('exchange_call',
 ################################ 
 db.define_table('item_post',
    Field('creator_id', 'string', readable=False, writable=False),
+   Field('item_detail', 'string'),
+   Field('url_title', 'string'),
    Field('title', 'string'),
-   Field('content', 'string'),
+   Field('item_content', 'string'),
+
+)
+
+################################
+####item_post_tag###############
+################################ 
+db.define_table('item_post_tag',
+   Field('item_post_id', 'string', readable=False, writable=False),
+   Field('creator_id', 'string' , readable=False, writable=False),
+   Field('tag', 'string'),
 )
 
 ################################

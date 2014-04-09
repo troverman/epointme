@@ -1,0 +1,4 @@
+cron:
+- description: bond_buyer
+  url: /epointme/default/update_market_daily
+  schedule: every 24 hours

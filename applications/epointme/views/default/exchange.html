@@ -1,8 +1,8 @@
 {{extend 'layout.html'}}
 <style>
     #header-index-container{
-        background-color:rgb(235,240,240);
-        border-bottom:2px solid rgb(220,220,220);
+        background-color:rgb(233,233,233);
+        border-bottom:1px solid rgb(201,201,201);
     }
     #header-index{
         margin-left:6%;
@@ -10,25 +10,47 @@
     }
     #project-list-container{text-align:center;width:100%;}
     #project-list-item{border:2px solid rgb(180,180,180);display:inline-block;}
+    #content { }
+    #right { 
+        width: 255px;
+        float: right;
+        padding-left:5px;
+        padding-right:5px; 
+    }
+    #left {
+        width: 175px; 
+        float: left;
+        border-right:1px solid rgb(238,238,238);  
+        padding-left:15px;    
+    }
 </style>
 
 <div id="header-index-container">
     <div id="header-index">
-        <br><h3>exchange</h3><br>
+        <br><h3 style="color:rgb(80, 84, 92);font-size:45px;">exchange</h3><br>
     </div>
 </div>
 
 <div class="centered-width">
-	<a class="btn">+ new enrty</a>
-	{{for market in market_list:}}
-		<h3><a href="/market/{{=market['title']}}/">{{=market['title']}}</a></h3>
-	{{pass}}
-	<h4>put / sell</h4>
-	{{for item in exhange_list:}}
-		{{=item}}<br><br>
-	{{pass}}
-	<h4>call / buy</h4>
-	{{for item in exhange_list:}}
-		{{=item}}<br><br>
-	{{pass}}
+    <div id="left">
+        {{for market in market_list:}}
+            <h3><a href="/market/{{=market['title']}}/">{{=market['title']}}</a></h3>
+        {{pass}}
+    </div>
+    <div id="right">
+        <a class="btn">+ new enrty</a>
+    </div>
+    <div id="content">
+    	<h4>put / sell</h4>
+    	{{for item in exhange_list:}}
+    		{{=item}}<br><br>
+    	{{pass}}
+    	<h4>call / buy</h4>
+    	{{for item in exhange_list:}}
+    		{{=item}}<br><br>
+    	{{pass}}
+    </div>
+    <div style="clear:both;"></div>
 </div>
+
+<br><br><br><br>

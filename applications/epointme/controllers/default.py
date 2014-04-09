@@ -47,7 +47,6 @@ def market():
 , transaction['amount']])
                 
 
-
     except IndexError:
         redirect(URL('markets'))
     return dict(
@@ -62,15 +61,50 @@ def market():
 def markets():
 
     market_list = db(db.market).select()
-    return dict(market_list=market_list)
+
+    form_create_market = SQLFORM(db.market)
+    if form_create_market.process(formname='form_create_market').accepted:
+        session.flash = 'market created'
+        redirect(URL('/market/'))        
+    elif form_create_market.errors:
+        response.flash = 'Error'
+    return dict(
+        market_list=market_list,
+        form_create_market=form_create_market,
+    )
 
 ########################
 ####marketplace#########
 ########################
 def marketplace():
     item_post_list = db(db.item_post).select()
+    
+
+    item_post_tag_list = db(db.item_post_tag).select()
+    item_post_tag_list_array = []
+    for tag in item_post_tag_list:
+        item_post_tag_list_array.append(tag['tag'])               
+    set_item_post_tag_list = set(item_post_tag_list)
+    tag_item_post_list_unsorted = list(set_item_post_tag_list)
+    combined_count_and_tag_array=[]
+    for tag in tag_item_post_list_unsorted:
+        combined_count_and_tag_array.append([tag, item_post_tag_list_array.count(tag)])
+    from operator import itemgetter
+    tag_item_post_list_sorted_by_total_count = sorted(combined_count_and_tag_array, key=itemgetter(1))  
+
+
+    
+    form_create_marketplace_item = SQLFORM(db.item_post)
+    if form_create_marketplace_item.process(formname='form_create_marketplace_item').accepted:
+        session.flash = 'item posted'
+        redirect(URL('/marketplace/'))        
+    elif form_create_marketplace_item.errors:
+        response.flash = 'Error'
+
     return dict(
         item_post_list=item_post_list,
+        form_create_marketplace_item=form_create_marketplace_item,
+        combined_count_and_tag_array=combined_count_and_tag_array,
     )
 
 ########################
@@ -82,18 +116,49 @@ def member():
         sent_transaction_from_member = db(db.transaction.member_send == member_from_url['id']).select()
         recieve_transaction_from_member = db(db.transaction.member_recieve == member_from_url['id']).select()
 
+        recieve_market_array = []
+        for transaction in recieve_transaction_from_member:
+            recieve_market_array.append(transaction['market_id'])
+
+        recieve_market_set_array = set(recieve_market_array)
+
+
     except IndexError:
         redirect(URL('members'))
     return dict(
         member_from_url=member_from_url,
         sent_transaction_from_member=sent_transaction_from_member,
         recieve_transaction_from_member=recieve_transaction_from_member,
+        recieve_market_set_array=recieve_market_set_array,
     )
 
 ########################
 ####pointbank###########
 ########################
 def pointbank():
+    return dict()
+
+########################
+####thread##############
+########################
+def thread():
+    thread_by_url = db(db.item_post.url_title == request.args(0)).select()    
+    thread_tag = db(db.item_post_tag.thread_id == thread_by_url[0]['id']).select()
+    return dict(
+        thread_by_url=thread_by_url,
+        thread_tag=thread_tag,
+    )
+
+########################
+####transaction#########
+########################
+def transaction():
+    return dict()
+
+########################
+####transactions########
+########################
+def transactions():
     return dict()
 
 ########################

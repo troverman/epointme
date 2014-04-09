@@ -1,20 +1,53 @@
 {{extend 'layout.html'}}
+<style>
+    #header-index-container{
+        background-color:rgb(233,233,233);
+        border-bottom:1px solid rgb(201,201,201);
+    }
+    #header-index{
+        margin-left:6%;
+        margin-right:6%;
+    }
+</style>
+<div id="header-index-container">
+    <div id="header-index">
+		<br><img style="height:70px;float:left;" class="img-polaroid" src="/lol/"/><h3 style="float:left;margin-left:15px;">{{=member_from_url['username']}}</h3><br>
+		<a class="btn" style="float:right;">follow</a>
+    </div>
+    <div style="clear:both;"></div>
+    <br>
+</div>
+
 <div class="centered-width">
-<h3>{{=member_from_url['username']}}</h3>
 
 
+
+<h5>facebook</h5>
+<h5>twitter</h5>
+<h5>givingfor</h5>
+<h5>conex.us</h5>
+<h5>bankingfor</h5>
+<h5>voetr</h5>
+<br><br>
+<h5>total value:</h5>
+<h5>graph when expand</h5>
+
+<br><br>
+<h4>sent transaction list</h4>
 {{=sent_transaction_from_member}}
 
+<br><br><br>
+
+
+<h4>recieve transaction list</h4>
 {{=recieve_transaction_from_member}}
+
+<br><br><br>
+
 
 <h4>member info</h4>
 <h4>member info</h4>
-<h4>member info</h4>
-<h4>member info</h4>
-<h4>member info</h4>
-<h4>member info</h4>
-<h4>member info</h4>
-<h4>member transaction</h4>
 <h4>member post</h4>
 
 </div>
+<br><br><br><br>
