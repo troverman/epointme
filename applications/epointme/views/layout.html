@@ -76,8 +76,8 @@
     #academies-icon:hover{color:rgb(255,255,255);}
     #courses-icon{color:rgb(211,221,241);}
     #courses-icon:hover{color:rgb(255,255,255);}
-    #discover-icon{color:rgb(211,221,241);}
-    #discover-icon:hover{color:rgb(255,255,255);}
+    #exchange-icon{color:rgb(211,221,241);}
+    #exchange-icon:hover{color:rgb(255,255,255);}
     #facebook-login:hover{opacity:.9;}
     #feed-icon{color:rgb(211,221,241);}
     #feed-icon:hover{color:rgb(255,255,255);}
@@ -143,6 +143,7 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
   <noscript><link href="{{=URL('static', 'css/web2py_bootstrap_nojs.css')}}" rel="stylesheet" type="text/css" /></noscript>
 
+
   {{block head}}
   {{end}}
 
@@ -162,12 +163,13 @@
           <div id="logo-container">
             <a href="/">
               <img id="logo-epoint" src="/epointme/static/images/epoint-logo.png" />
+              <!--<h5 style="float:left;">epoint.me</h5>-->
             </a>
           </div>
           <div id="header-icons" style="margin-top:30px;margin-left:3px;float:left;">
-            <a href="/discover/"><i id="discover-icon" class="fa fa-random"></i></a>
-            <a href="/markets/"><i id="courses-icon" class="fa fa-pencil"></i></a>
-            <a href="/marketplace/"><i id="academies-icon" class="fa fa-th"></i></a>
+            <a href="/exchange/"><i id="exchange-icon" class="fa fa-exchange"></i></a>
+            <a href="/markets/"><i id="courses-icon" class="fa fa-bar-chart-o"></i></a>
+            <a href="/marketplace/"><i id="academies-icon" class="fa fa-shopping-cart"></i></a>
             <a href="/feed/"><i id="feed-icon" class="fa fa-align-justify"></i></a>
           </div>
           <div id="header-search" style="float:left;margin-left:20px;margin-top:23px;">
@@ -188,19 +190,19 @@
                     <a href="/account/">
                       <i class="fa fa-user" style="float:left;margin-top:3px;"></i><p style="margin-left:25px;">account</p>
                     </a>
-                </li>    
-                <li>
-                  <a href="/inbox/">
-                    <i class="fa fa-envelope" style="float:left;margin-top:3px;"></i><p style="margin-left:25px;">inbox</p>
-                  </a>              
                 </li>
+                <li>
+                <a href="/inbox/">
+                      <i class="fa fa-envelope" style="float:left;margin-top:3px;"></i><p style="margin-left:25px;">inbox</p>
+                    </a>
+                </li>    
                 <li>
                   <a href="/notifications/">
                     <i class="fa fa-globe" style="float:left;margin-top:3px;"></i><p style="margin-left:25px;">notifications</p>
                   </a>
                 </li>
                 <li>
-                  <a href="/member/{{=session.auth.user.username}}">
+                  <a href="/member/{{=session.auth.user.username}}/">
                     <i class="fa fa-smile-o" style="float:left;margin-top:3px;"></i><p style="margin-left:25px;">profile</p>
                   </a>
                 </li>
@@ -213,8 +215,8 @@
               </ul>
             </ul>
             <div id="member-icon-area">
-              <a href="/notifications"><i id="notification-icon" class="fa fa-globe"></i></a>
-              <a href="/inbox"><i id="inbox-icon" class="fa fa-envelope"></i></a>
+              <a href="/notifications/"><i id="notification-icon" class="fa fa-globe"></i></a>
+              <a href="/inbox/"><i id="inbox-icon" class="fa fa-envelope"></i></a>
             </div>
           {{else:}}
             <ul id="navbar" class="nav pull-right" style="margin-top:24px;">
@@ -309,8 +311,8 @@
     {{if request.function=='markets':}}
       $("#courses-icon").css('color','rgb(255,255,255)');
     {{pass}}
-    {{if request.function=='discover':}}
-      $("#discover-icon").css('color','rgb(255,255,255)');
+    {{if request.function=='exchange':}}
+      $("#exchange-icon").css('color','rgb(255,255,255)');
     {{pass}}
     {{if request.function=='feed':}}
       $("#feed-icon").css('color','rgb(255,255,255)');

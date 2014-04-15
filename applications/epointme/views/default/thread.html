@@ -56,12 +56,15 @@ label#thread_comment_comment_content__label{display:none}
     <form style="display:none"><input id ="thread_like" name="thread_like-{{=thread_by_url[0]['id']}}" value="{{=thread_by_url[0]['id']}}" type="hidden"/></form> 
     <form style="display:none"><input id ="thread_dislike" name="thread_dislike-{{=thread_by_url[0]['id']}}" value="{{=thread_by_url[0]['id']}}" type="hidden"/></form>                                 
     <h2 style="float:left;margin-left:15px;"><a>0</a></h2>
+    <h5 style="float:left;margin-left:15px;"><a>price in different markets</a></h5>
+
     <div style="float:right;margin-right:15px;" id="thread-item-dislike-{{=thread_by_url[0]['id']}}"><a style="margin-left:15px;" onclick="ajax('ajax_dislike_thread', ['thread_dislike-{{=thread_by_url[0]['id']}}'], ':eval');">dislike</a></div>
     <div style="float:right;margin-right:15px;" id="thread-item-like-{{=thread_by_url[0]['id']}}"><a style="margin-left:15px;" onclick="ajax('ajax_like_thread', ['thread_like-{{=thread_by_url[0]['id']}}'], ':eval');">like</a></div>
     <br><br>
     <h5 style="float:right;margin-right:15px;"><a data-toggle="modal" href="#thread-share">share</a></h5>
     <br><br>
     <h5 style="float:right;margin-right:15px;"><a data-toggle="modal" href="#thread-stats">stats</a></h5>
+    <h5 style="float:right;margin-right:15px;"><a data-toggle="modal" href="#thread-stats">info</a></h5>
 
     <div style="clear:both;"></div>
     <hr><br>

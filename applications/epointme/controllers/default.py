@@ -23,11 +23,20 @@ def exchange():
     )
 
 ########################
+####feed################
+########################
+def feed():
+    return dict()
+
+########################
 ####index###############
 ########################
 def index():
     response.flash = T("cracking open the idea of fiat based value")
-    return dict()
+    item_post_list = db(db.item_post).select().as_list()
+    #import random
+    #random_five_items = random.shuffle(item_post_list)[:5]
+    return dict(item_post_list=item_post_list)
 
 ########################
 ####market##############
@@ -84,7 +93,7 @@ def marketplace():
     item_post_tag_list_array = []
     for tag in item_post_tag_list:
         item_post_tag_list_array.append(tag['tag'])               
-    set_item_post_tag_list = set(item_post_tag_list)
+    set_item_post_tag_list = set(item_post_tag_list_array)
     tag_item_post_list_unsorted = list(set_item_post_tag_list)
     combined_count_and_tag_array=[]
     for tag in tag_item_post_list_unsorted:
@@ -104,7 +113,7 @@ def marketplace():
     return dict(
         item_post_list=item_post_list,
         form_create_marketplace_item=form_create_marketplace_item,
-        combined_count_and_tag_array=combined_count_and_tag_array,
+        tag_item_post_list_sorted_by_total_count=tag_item_post_list_sorted_by_total_count,
     )
 
 ########################
@@ -133,9 +142,27 @@ def member():
     )
 
 ########################
+####mission#############
+########################
+def mission():
+    return dict()
+
+########################
+####notifications#######
+########################
+def notifications():
+    return dict()
+
+########################
 ####pointbank###########
 ########################
 def pointbank():
+    return dict()
+
+########################
+####search##############
+########################
+def search():
     return dict()
 
 ########################
@@ -143,10 +170,12 @@ def pointbank():
 ########################
 def thread():
     thread_by_url = db(db.item_post.url_title == request.args(0)).select()    
-    thread_tag = db(db.item_post_tag.thread_id == thread_by_url[0]['id']).select()
+    thread_tag = db(db.item_post_tag.item_post_id == thread_by_url[0]['id']).select()
+    similar_threads = db(db.item_post).select()    
     return dict(
         thread_by_url=thread_by_url,
         thread_tag=thread_tag,
+        similar_threads=similar_threads,
     )
 
 ########################

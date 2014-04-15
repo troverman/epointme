@@ -20,14 +20,13 @@
 
 <div class="centered-width">
 
-
-
 <h5>facebook</h5>
 <h5>twitter</h5>
 <h5>givingfor</h5>
 <h5>conex.us</h5>
 <h5>bankingfor</h5>
 <h5>voetr</h5>
+
 <br><br>
 <h5>total value:</h5>
 <h5>graph when expand</h5>
@@ -38,16 +37,20 @@
 
 <br><br><br>
 
-
 <h4>recieve transaction list</h4>
 {{=recieve_transaction_from_member}}
 
 <br><br><br>
 
-
 <h4>member info</h4>
 <h4>member info</h4>
 <h4>member post</h4>
 
+{{for x in range(15):}}
+    <p class="lead"> content / post {{=x}}</p>
+{{pass}}
+
 </div>
+
+
 <br><br><br><br>

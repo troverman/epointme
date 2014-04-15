@@ -1,9 +1,26 @@
 {{extend 'layout.html'}}
-pointbank
+<style>
+    #header-index-container{
+        background-color:rgb(233,233,233);
+        border-bottom:1px solid rgb(201,201,201);
+    }
+    #header-index{
+        margin-left:6%;
+        margin-right:6%;
+    }
+</style>
+<div id="header-index-container">
+    <div id="header-index">
+        <br><h3 style="color:rgb(80, 84, 92);font-size:45px;">pointbank</h3><br>
+    </div>
+</div>
 get a loan... pay back with specified points.. akak charitable points.. interest only in these type of points.
 a promise to ourself that value today is even better tomomrrow.
 
 
+<script language="javascript" type="text/javascript" src="{{=URL(request.application,'static','js/jquery.flot.js')}}"></script>
+<script language="javascript" type="text/javascript" src="{{=URL(request.application,'static','js/jquery.flot.selection.js')}}"></script>
+<script language="javascript" type="text/javascript" src="{{=URL(request.application,'static','js/jquery.flot.time.js')}}"></script>
 <script type="text/javascript">
                     {{an_array=[]}}
                     {{import time}}
@@ -110,8 +127,3 @@ a promise to ourself that value today is even better tomomrrow.
 1<div id="placeholder" style="width:75%;height:250px;display: table;margin: 0 auto;"></div>
     
 
-
-
-<script language="javascript" type="text/javascript" src="{{=URL(request.application,'static','js/jquery.flot.js')}}"></script>
-<script language="javascript" type="text/javascript" src="{{=URL(request.application,'static','js/jquery.flot.selection.js')}}"></script>
-<script language="javascript" type="text/javascript" src="{{=URL(request.application,'static','js/jquery.flot.time.js')}}"></script>

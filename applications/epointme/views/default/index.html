@@ -15,90 +15,9 @@
     #share-footer-container{margin-left:5%;margin-right:5%;}
     #project-list-container{text-align:center;width:100%;}
     #project-list-item{border:2px solid rgb(180,180,180);display:inline-block;}
+
 </style>
-<script language="javascript" type="text/javascript" src="{{=URL(request.application,'static','js/jquery.flot.js')}}"></script>
-<script language="javascript" type="text/javascript" src="{{=URL(request.application,'static','js/jquery.flot.selection.js')}}"></script>
-<script language="javascript" type="text/javascript" src="{{=URL(request.application,'static','js/jquery.flot.time.js')}}"></script>
-<script language="javascript" type="text/javascript" src="{{=URL(request.application,'static','js/jquery.thumbnailScroller.js')}}"></script>
-
-<div id="header-index-container">
-    <div id="header-index"><br>
-        <img style="width:500px;height:500px;" class="img-polaroid" src="/epointme/static/images/noimage-icon.png"/>
-        <p class="lead">virtual economy</p>
-        <p class="lead">value is subjective.</p>
-        <p class="lead">anyone can create a market, and everyone valuates it through the exchange.</p>
-        <p class="lead">transparent, crowd owned, value based economy.</p>
-        <p class="lead">create a market</p>
-        <p class="lead">cracking open the idea of fiat based value.</p>
-    </div>
-</div>
-
-<br>
-<div>
-    <table style="margin-left:auto;margin-right:auto;">
-        <tr>
-            <td><p class="lead">subjective value</p></td>
-            <td><p class="lead">value exchange</p></td>
-            <td><p class="lead">what is valueable to you?</p></td>
-        </tr>
-    </table>
-</div>
-
-<br><br>
-
-<div style="background-color:rgb(68, 66, 93)">
-    <br><br><br>
-    <p style="text-align:center;color:rgb(200,200,200)">value</p> 
-    <br><br><br>
-</div>
-
-<br><br><br>
-
-<div>
-    <table style="margin-left:auto;margin-right:auto;">
-        <tr>
-            <td><p class="lead"><a href="/about/">about</a></p></td>
-            <td><p class="lead"><a href="/mission/">mission</a></p></td>
-            <td><p class="lead"><a href="/transparency/">transparency</a></p></td>
-        </tr>
-    </table>
-</div>
-
-    <p style="text-align:center;" class="lead"><a href="/exchange/">exhange</a></p><hr>
-    <p style="text-align:center;" class="lead"><a href="/markets/">markets</a></p><hr>
-    <p style="text-align:center;" class="lead"><a href="/marketplace/">marketplace</a></p><hr>
-    <div id="project-list-container">
-        {{for x in range(5):}}
-            <div id="project-list-item">
-                <a href="/marketplace/"><p style="text-align:center;">item</p></a>
-                <a href="/marketplace/"><img class="img-polaroid" src="/epointme/static/images/noimage-icon.png"/></a>
-            </div>
-        {{pass}}
-        <br><br>
-    </div>
-    <p style="text-align:center;" class="lead"><a href="/pointbank/">pointbank</a></p><hr>
-
-
-    <p class="lead">epoint.me is a value market</p>
-    <p class="lead">epoint.me valuates us all</p>
-
-
-
-<div style="background-color:rgb(68, 66, 93)">
-    <br><br><br>
-    <p style="text-align:center;color:rgb(200,200,200)">money monopoly monopoly mooney</p> 
-    <p style="text-align:center;color:rgb(200,200,200)">money monopoly monopoly mooney</p> 
-    <p style="text-align:center;color:rgb(200,200,200)">money monopoly monopoly mooney</p> 
-    <p style="text-align:center;color:rgb(200,200,200)">money monopoly monopoly mooney</p> 
-
-    <br><br><br>
-</div>
-
-<div class="centered-width">
-    <br><br><br>
-    <a href="/transparency/" class="lead">transparent transaction logs; open currency</a>
-
-    <script type="text/javascript">
+<script type="text/javascript">
     {{an_array=[]}}
     {{import time}}
     {{array = [1,2,3,4,5]}}
@@ -173,7 +92,100 @@
             }
         });
     });
-    </script>
+</script>
+<script language="javascript" type="text/javascript" src="{{=URL(request.application,'static','js/jquery.flot.js')}}"></script>
+<script language="javascript" type="text/javascript" src="{{=URL(request.application,'static','js/jquery.flot.selection.js')}}"></script>
+<script language="javascript" type="text/javascript" src="{{=URL(request.application,'static','js/jquery.flot.time.js')}}"></script>
+<script language="javascript" type="text/javascript" src="{{=URL(request.application,'static','js/jquery.thumbnailScroller.js')}}"></script>
+
+<div id="header-index-container">
+    <div id="header-index"><br>
+        <img style="width:200px;height:200px;" class="img-polaroid" src="/epointme/static/images/noimage-icon.png"/>
+        <p class="lead">virtual economy</p>
+        <p class="lead">value is subjective.</p>
+        <p class="lead">anyone can create a market, and everyone valuates it through the exchange.</p>
+        <p class="lead">transparent, crowd owned, value based economy.</p>
+        <p class="lead">create a market</p>
+        <p class="lead">purchase in the marketplace</p>
+        <p class="lead">cracking open the idea of fiat based value.</p>
+        
+        <p style="text-align:center"><i style="font-size:256px;" class="fa fa-chain-broken"></i></p>
+
+        <iframe src="//www.youtube.com/embed/medBPRNlV0w?list=UUNceSFBcgkYqv4QiD374VTQ" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+
+<br>
+<div>
+    <p style="text-align:center"><i style="font-size:256px;" class="fa fa-money fa-spin"></i></p>
+    <p style="text-align:center" class="lead">subjective value</p></td>
+    <p style="text-align:center" class="lead">transparent value exchange</p></td>
+    <p style="text-align:center" class="lead">what is valueable to you?</p></td>
+
+    <table style="margin-left:auto;margin-right:auto">
+        <tr>
+            <td><img style="width:300px;height:300px;" class="img-polaroid" src="/epointme/static/images/Infinity.gif"/></td>
+            <td><img style="width:300px;height:300px;" class="img-polaroid" src="/epointme/static/images/bitcoins.jpg"/></td>
+            <td><img style="width:300px;height:300px;" class="img-polaroid" src="/epointme/static/images/dollars.jpeg"/></td>
+            <td><img style="width:300px;height:300px;" class="img-polaroid" src="/epointme/static/images/transparency.png"/></td>
+
+        </tr>
+    </table>
+
+
+</div>
+
+<br><br>
+
+<div style="background-color:rgb(68, 66, 93)">
+    <br><br><br>
+    <table style="margin-left:auto;margin-right:auto;">
+        <tr>
+            <td><p class="lead"><a href="/about/" style="color:rgb(200,200,200);">about</a></p></td>
+            <td><p class="lead"><a href="/mission/" style="color:rgb(200,200,200);">mission</a></p></td>
+            <td><p class="lead"><a href="/transparency/" style="color:rgb(200,200,200);">transparency</a></p></td>
+        </tr>
+    </table>
+    <br><br><br>
+</div>
+
+<br><br><br>
+
+
+
+    <p class="lead">epoint.me is a value market</p>
+    <p class="lead">epoint.me valuates us all</p>
+    <a href="/transparency/" class="lead">transparent transaction logs; open currency</a>
+
+
+
+<div style="background-color:rgb(68, 66, 93)">
+    <br><br><br>
+    <p style="text-align:center;" class="lead"><a href="/exchange/" style="color:rgb(200,200,200)">value exchange</a></p> 
+    <br><br><br>
+</div>
+
+<div class="centered-width">
+    <br><br><br>
+    <div>
+        <p style="text-align:center"><i style="font-size:256px;" class="fa fa-refresh fa-spin"></i></p>
+        <br><br>
+        <p class="lead">value is subjective.</p>
+        <p class="lead">anyone can create a market, and everyone valuates it through the exchange.</p>
+        <br><br>
+        <p style="text-align:center"><i style="font-size:256px;" class="fa fa-exchange"></i></p>
+    </div>
+    <br><br><br>
+</div>
+
+<div style="background-color:rgb(68, 66, 93)">
+    <br><br><br>
+    <p style="text-align:center;color:rgb(200,200,200)" class="lead"><a href="/markets/" style="color:rgb(200,200,200)">markets</a></p> 
+    <br><br><br>
+</div>
+
+<div class="centered-width">
+    <br><br><br>
     <div>
         <div id="placeholder" style="width:75%;height:250px;display: table;margin: 0 auto;"></div>
     </div>
@@ -182,16 +194,32 @@
 
 <div style="background-color:rgb(68, 66, 93)">
     <br><br><br>
-    <p style="text-align:center;color:rgb(200,200,200)">value</p> 
+    <p style="text-align:center;color:rgb(200,200,200)" class="lead"><a href="/marketplace/" style="color:rgb(200,200,200)">marketplace</a></p> 
+    <br><br><br>
+</div>
+<br><br><br>
+    <div id="project-list-container">
+        {{for item in item_post_list[:5]:}}
+            <div id="project-list-item">
+                <a href="/thread/{{=item['url_title']}}"><p style="text-align:center;">{{=item['title']}}</p></a>
+                <a href="/thread/{{=item['url_title']}}"><img style="width:250px;" class="img-polaroid" src="/epointme/static/images/noimage-icon.png"/></a>
+            </div>
+        {{pass}}
+        <br><br>
+    </div>
+<br><br><br>
+
+<div style="background-color:rgb(68, 66, 93)">
+    <br><br><br>
+    <p style="text-align:center;color:rgb(200,200,200)" class="lead"><a href="/pointbank/" style="color:rgb(200,200,200)">pointbank</a></p> 
     <br><br><br>
 </div>
 
+
 <div class="centered-width">
-    <p class="lead">content</p>
-    <p class="lead">content</p>
-    <p class="lead">content</p>
-    <p class="lead">content</p>
-    <p class="lead">content</p>
+    <p class="lead">get a loan... pay back with specified points.. akaa charitable points.. interest only in these type of points.</p>
+    <p class="lead">a promise to ourself that value today is even better tomomrrow.</p>
+
 
 </div>
 

@@ -1,13 +1,13 @@
 {{extend 'layout.html'}}
 <style>
-    #header-index-container{
-        background-color:rgb(233,233,233);
-        border-bottom:1px solid rgb(201,201,201);
-    }
-    #header-index{
-        margin-left:6%;
-        margin-right:6%;
-    }
+#header-index-container{
+    background-color:rgb(233,233,233);
+    border-bottom:1px solid rgb(201,201,201);
+}
+#header-index{
+    margin-left:6%;
+    margin-right:6%;
+}
 #contentwrapper{width: 100%;}               
 #content { //margin: 0 280px 0 180px; /*Margins for content column. Should be "0 RightColumnWidth 0 LeftColumnWidth*/}
 #right { 
@@ -59,9 +59,30 @@
         border-left:1px solid rgb(235,235,238);
         border-bottom:1px solid rgb(235,235,238) 
 }
+#item-block-list-container{text-align:center;width:100%;}
+#item-block-list-item{border:2px solid rgb(210,210,210);display:inline-block;}
 </style>
+<script type="text/javascript" src="{{=URL(request.application,'static','js/jquery.tagsinput.js')}}"></script>  
+<link rel="stylesheet" type="text/css" href="/epointme/static/css/jquery.tagsinput.css" />
 <script>
-$(document).ready(function(){                                                         
+
+
+function onAddTag_marketplace(tag) {
+    ajax('ajax_add_tag_collection', ['collection_add_tag_form'], ':eval');
+}
+        
+
+
+$(document).ready(function(){
+
+    $('#sidebar_add_tag_form').tagsInput({
+        onAddTag:onAddTag_marketplace,
+        onRemoveTag:onAddTag_marketplace,
+        'defaultText':'tags',
+        'width':'auto',
+        'height':'auto'     
+    });
+
     $("#collapse-left").click(function() {  
         $("#left").fadeToggle(300);
         $("#collapsed-left").delay(300).fadeToggle(300);
@@ -74,10 +95,12 @@ $(document).ready(function(){
         $("#ad_block").fadeToggle();        
     });
     $("#view-list").click(function() {     
-        alert('hello list');  
+        $("#item-block-list-container").fadeToggle(); 
+        $("#item-list-container").fadeToggle();
     });
     $("#view-table").click(function() {     
-        alert('hello table');  
+        $("#item-block-list-container").fadeToggle(); 
+        $("#item-list-container").fadeToggle();
     });
 });
 </script>   
@@ -96,11 +119,39 @@ $(document).ready(function(){
 </div>
 <div id="left">
     <a id="collapse-left"> <h5 style="margin:0px;padding:3px;" title="minimize"> << </h5> </a>
-    <p>show only certain filters</p>
-	{{for tag in combined_count_and_tag_array:}}
-    	<p>{{=tag[0]['tag']}}</p>
-        <p>{{=tag[1]}}</p>
-	{{pass}}
+    <p>price range</p>
+    <p>markets</p>
+    <p>local items</p>
+    <p>epoint verified items</p>
+    <p>deliveryfor items</p>
+    <p>services</p>
+
+
+
+    <div style="margin-right:16px;" id="div_sidebar_add_tag"><input name = "sidebar_add_tag" type="text" id="sidebar_add_tag_form" /></div><br>   
+
+    <hr style="margin-top:10px;"><br>
+    <div id="tag-list">
+        {{for tag in reversed(tag_item_post_list_sorted_by_total_count):}}
+            <div id="tag-list-item" style="margin-right:15px;font-family:ubuntu;">                         
+                <a href="/tags/{{=tag[0]}}" >{{=tag[0]}}</a>
+                <a style="color:rgb(210,210,210);" href="/tags/{{=tag[0]}}"> ( {{=tag[1]}} ) </a>
+                <a id="plus-{{=tag[0]}}" class="filter_tag_item" onclick="add_tag_sidebar('{{=tag[0]}}');" >+</a>                        
+                <script>
+                        function add_tag_sidebar(tag){
+                            if ($('#sidebar_add_tag_form').tagExist(tag)) {
+                                $('#sidebar_add_tag_form').removeTag(tag);
+                            }
+                            else{
+                                $('#sidebar_add_tag_form').addTag(tag);
+                            }
+                        }
+                    </script>
+            </div>
+        {{pass}}
+        <br>
+        <p style="text-align:center;"><a>view more</a></p>
+    </div>
 </div>
 <div id="right">
     <a data-toggle="modal" href="#new-item" class="btn">+ new item</a><br><br>
@@ -120,10 +171,23 @@ $(document).ready(function(){
     <br><br>-->
     <a id="view-list"><i class="icon-align-justify"></i></a>
     <a id="view-table"><i class="icon-th"></i></a>
+    <div id="item-list-container">
+    	{{for item_post in item_post_list:}}
+    		<h4><a href="/thread/{{=item_post['url_title']}}">{{=item_post['title']}}</a></h4>
+    	{{pass}}
+    </div>
+    <div id="item-block-list-container" style="display:none;">
+        {{for item_post in item_post_list:}}
+            <div id="item-block-list-item">
+                <h4><a href="/thread/{{=item_post['url_title']}}">{{=item_post['title']}}</a></h4>
+                <a href="/marketplace/"><img class="img-polaroid" src="/epointme/static/images/noimage-icon.png"/></a>
+                <h4><a href="/thread/{{=item_post['url_title']}}">price / available markets</a></h4>
+                <h4><a href="/thread/{{=item_post['url_title']}}">comments (x)</a></h4>
+                <h4><a href="/thread/{{=item_post['url_title']}}">like / dislike</a></h4>
+            </div>
+        {{pass}}
+    </div>
 
-	{{for item_post in item_post_list:}}
-		<h4><a href="/thread/{{=item_post['url_title']}}">{{=item_post['title']}}</a></h4>
-	{{pass}}
 </div>
 </div>
 <div style="clear:both"></div>
