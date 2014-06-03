@@ -8,27 +8,48 @@
         margin-left:6%;
         margin-right:6%;
     }
+    #content { }
+    #right { 
+        width: 255px;
+        float: right;
+        padding-left:5px;
+        padding-right:5px; 
+    }
+    #left {
+        width: 175px; 
+        float: left;
+        border-right:1px solid rgb(238,238,238);  
+        padding-left:15px;    
+    }
 </style>
 
 <div id="header-index-container">
     <div id="header-index">
         <br><h3 style="float:left;">markets</h3>
-        <a data-toggle="modal" href="#new-market" class="btn" style="float:right;">+ new market</a>
+        {{if auth.is_logged_in():}}
+            <a data-toggle="modal" href="#new-market" class="btn" style="float:right;">+ new market</a>
+        {{else:}}
+            <a data-toggle="modal" href="#login-or-signup" class="btn" style="float:right;">+ new market</a>
+        {{pass}}
         <div style="clear:both;"></div>
         <br>
     </div>
 
 </div>
 
+<div id="left">
+    <a>filters</a>
+    <a>sort</a>
+</div>
+
 <div class="centered-width">
-	<br>
-	<a>filters</a>
-	<a>sort</a>
+
 
 	{{for market in market_list:}}
 		<h3><a href="/market/{{=market['url_title']}}">{{=market['title']}}</a></h3>
 		<p class="lead">{{=market['description']}}</p>
 		<p class="lead">marketplace stats</p>
+        <hr><br>
 	{{pass}}
 </div>
 

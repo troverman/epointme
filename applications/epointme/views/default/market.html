@@ -18,107 +18,134 @@
 
 <div id="header-index-container">
     <div id="header-index">
-		<h3>{{=market_from_url['title']}}</h3>
+        <br>
+        <h3 style="color:rgb(80, 84, 92);font-size:45px;">{{=market_from_url['title']}}</h3>
+        <br>
     </div>
 </div>
 <div class="centered-width">
     <br>
-	<p class="lead">{{=market_from_url['description']}}</p>
-	<p class="lead"><a>market exchange</a></p>
-    <p class="lead">stats</p>
-    <p class="lead">market circulation size: {{=market_circulation_size}}</p>
-    <p class="lead">market circulation size / capita: {{=market_circulation_size/len(db(db.auth_user).select())}}</p>
+    <p class="lead">{{=market_from_url['description']}}</p>
+    <br>
+    <br>
+    <ul class="nav nav-tabs" id="profile-tab" data-tabs="tabs" style="margin-left:-15px;">        
+        <li id="exchange-tab-tab"><a href="#exchange-tab" data-toggle="tab">exchange</a></li>  
+        <li id="marketplace-tab-tab"><a href="#marketplace-tab" data-toggle="tab">marketplace</a></li>  
+        <li id="stats-tab-tab"><a href="#stats-tab" data-toggle="tab">stats</a></li>  
+        <li id="transactions-tab-tab"><a href="#transactions-tab" data-toggle="tab">transactions</a></li>        
+      
+    </ul>
 
+    <div class="tab-content">
+        <div class="tab-pane active" id="exchange-tab">
+            <p class="lead">exchange put</p>
+            {{=exhange_put_list}}
+            <p class="lead">exchange call</p>
+            {{=exhange_call_list}}
+        </div>
+        <div class="tab-pane" id="marketplace-tab">
+            {{for item in item_post_market_list1:}}
+                {{=item}}
+                <!--{{if str(item) == market_from_url['id']:}}
+                    {{=item}}
+                {{pass}}-->
+            {{pass}}
+        </div>
+        <div class="tab-pane" id="stats-tab">
+            <p class="lead">market circulation size: {{=market_circulation_size}}</p>
+            <p class="lead">market circulation size / capita: {{=market_circulation_size/len(db(db.auth_user).select())}}</p>
 
-    <p class="lead">transactions</p>
+            <script type="text/javascript">
+                {{an_array=[]}}
+                {{for counter, transaction in enumerate(transaction_array):}}
+                    {{an_array.append([ transaction[2], int(transaction[3]) ])}}
+                {{pass}}
 
-    {{for transaction in transaction_array:}}
-        {{=transaction[0]['username']}}
-        {{=transaction[1]['username']}}
-        {{=transaction[2]}}
-        {{=transaction[3]}}
-        <br><br>
+                $(function() {
+                    var data = '';
+                    var show_graph_lines = true;
+                    if (data == ''){data = {{=an_array}};}                  
+                    var options = {
+                        series: {
+                            lines: {show: true},                            
+                            points: {show: true}
+                        },
+                        grid: {
+                            hoverable: true,
+                            clickable: true
+                        },
+                        xaxis:{mode:"time",},
+                        yaxis: {show: true,},
+                        selection: {mode: "x"},
+                    };
+                    var placeholder = $.plot("#placeholder", [data], options);
+                    $("#placeholder").bind("plotselected", function (event, ranges) {
+                        placeholder = $.plot("#placeholder", [data], $.extend(true, {}, options, {
+                        xaxis: {
+                            min: ranges.xaxis.from,
+                            max: ranges.xaxis.to
+                        },
+                        lines: { show: show_graph_lines },
+                        points: { show: true }
+                        }));
+                    overview.setSelection(ranges, true);
+                    }); 
+                                                   
+                    function showTooltip(x, y, contents) {
+                        $("<div id='tooltip'>" + contents + "</div>").css({
+                        position: "absolute",
+                        display: "none",
+                        top: y + 5,
+                        left: x + 5,
+                        border: "1px solid #fdd",
+                        padding: "2px",
+                        "background-color": "#fee",
+                        opacity: 0.80
+                        }).appendTo("body").fadeIn(200);
+                    }           
+                    var previousPoint = null;
+                    $("#placeholder").bind("plothover", function (event, pos, item) {
+                        var str = "(" + pos.x.toFixed(2) + ", " + pos.y.toFixed(2) + ")";
+                        $("#hoverdata").text(str);
+                        if (item) {
+                            if (previousPoint != item.dataIndex) {         
+                                previousPoint = item.dataIndex;
+                                $("#tooltip").remove();
+                                var x = item.datapoint[0].toFixed(2),
+                                y = item.datapoint[1].toFixed(2);          
+                                showTooltip(item.pageX, item.pageY,
+                                item.series.label + " of " + x + " = " + y);
+                            }
+                        } else {
+                            $("#tooltip").remove();
+                            previousPoint = null;            
+                        }           
+                    });   
+                    $("#placeholder").bind("plotclick", function (event, pos, item) {
+                        if (item) {
+                            $("#clickdata").text(" - click point " + item.dataIndex + " in " + item.series.label);
+                            plot.highlight(item.series, item.datapoint);
+                        }
+                    });
+                });
+            </script>
+                
+            <div id="placeholder" style="width:75%;height:250px;display: table;margin: 0 auto;"></div>
 
-    {{pass}}
+        </div>
+        <div class="tab-pane" id="transactions-tab">
 
-    <script type="text/javascript">
-    {{an_array=[]}}
-    {{for counter, transaction in enumerate(transaction_array):}}
-        {{an_array.append([ transaction[2], int(transaction[3]) ])}}
-    {{pass}}
+            {{for transaction in transaction_array:}}
+                {{=transaction[0]['username']}}
+                {{=transaction[1]['username']}}
+                {{=transaction[2]}}
+                {{=transaction[3]}}
+                <br><br>
+            {{pass}}
 
-    $(function() {
-        var data = '';
-        var show_graph_lines = true;
-        if (data == ''){data = {{=an_array}};}                  
-        var options = {
-            series: {
-                lines: {show: true},                            
-                points: {show: true}
-            },
-            grid: {
-                hoverable: true,
-                clickable: true
-            },
-            xaxis:{mode:"time",},
-            yaxis: {show: true,},
-            selection: {mode: "x"},
-        };
-        var placeholder = $.plot("#placeholder", [data], options);
-        $("#placeholder").bind("plotselected", function (event, ranges) {
-            placeholder = $.plot("#placeholder", [data], $.extend(true, {}, options, {
-            xaxis: {
-                min: ranges.xaxis.from,
-                max: ranges.xaxis.to
-            },
-            lines: { show: show_graph_lines },
-            points: { show: true }
-            }));
-        overview.setSelection(ranges, true);
-        }); 
-                                       
-        function showTooltip(x, y, contents) {
-            $("<div id='tooltip'>" + contents + "</div>").css({
-            position: "absolute",
-            display: "none",
-            top: y + 5,
-            left: x + 5,
-            border: "1px solid #fdd",
-            padding: "2px",
-            "background-color": "#fee",
-            opacity: 0.80
-            }).appendTo("body").fadeIn(200);
-        }           
-        var previousPoint = null;
-        $("#placeholder").bind("plothover", function (event, pos, item) {
-            var str = "(" + pos.x.toFixed(2) + ", " + pos.y.toFixed(2) + ")";
-            $("#hoverdata").text(str);
-            if (item) {
-                if (previousPoint != item.dataIndex) {         
-                    previousPoint = item.dataIndex;
-                    $("#tooltip").remove();
-                    var x = item.datapoint[0].toFixed(2),
-                    y = item.datapoint[1].toFixed(2);          
-                    showTooltip(item.pageX, item.pageY,
-                    item.series.label + " of " + x + " = " + y);
-                }
-            } else {
-                $("#tooltip").remove();
-                previousPoint = null;            
-            }           
-        });   
-        $("#placeholder").bind("plotclick", function (event, pos, item) {
-            if (item) {
-                $("#clickdata").text(" - click point " + item.dataIndex + " in " + item.series.label);
-                plot.highlight(item.series, item.datapoint);
-            }
-        });
-    });
-	</script>
-    
-	<div>
-	    <div id="placeholder" style="width:75%;height:250px;display: table;margin: 0 auto;"></div>
-	</div>
+        </div>
+    </div>
+
 </div>
 
 <br>

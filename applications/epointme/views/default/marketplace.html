@@ -60,7 +60,8 @@
         border-bottom:1px solid rgb(235,235,238) 
 }
 #item-block-list-container{text-align:center;width:100%;}
-#item-block-list-item{border:2px solid rgb(210,210,210);display:inline-block;}
+#item-block-list-item{border:2px solid rgb(210,210,210);display:inline-block;padding:10px;margin:7px;}
+#item-block-list-item:hover{border:2px solid rgb(110,110,110);display:inline-block;padding:11px;margin:7px;background-color:rgb(255,255,255);}
 </style>
 <script type="text/javascript" src="{{=URL(request.application,'static','js/jquery.tagsinput.js')}}"></script>  
 <link rel="stylesheet" type="text/css" href="/epointme/static/css/jquery.tagsinput.css" />
@@ -83,6 +84,14 @@ $(document).ready(function(){
         'height':'auto'     
     });
 
+    $('#sidebar_add_market_form').tagsInput({
+        onAddTag:onAddTag_marketplace,
+        onRemoveTag:onAddTag_marketplace,
+        'defaultText':'markets',
+        'width':'auto',
+        'height':'auto'     
+    });
+
     $("#collapse-left").click(function() {  
         $("#left").fadeToggle(300);
         $("#collapsed-left").delay(300).fadeToggle(300);
@@ -92,21 +101,21 @@ $(document).ready(function(){
         $("#left").delay(300).fadeIn(300);  
     });
     $("#close-ad").click(function() {       
-        $("#ad_block").fadeToggle();        
-    });
-    $("#view-list").click(function() {     
-        $("#item-block-list-container").fadeToggle(); 
-        $("#item-list-container").fadeToggle();
-    });
-    $("#view-table").click(function() {     
-        $("#item-block-list-container").fadeToggle(); 
-        $("#item-list-container").fadeToggle();
+        $("#right").fadeToggle();        
     });
 });
 </script>   
 <div id="header-index-container">
     <div id="header-index">
-        <br><h3 style="color:rgb(80, 84, 92);font-size:45px;">marketplace</h3><br>
+        <br>
+        <h3 style="color:rgb(80, 84, 92);font-size:45px;float:left;">marketplace</h3>
+        {{if auth.is_logged_in():}}
+            <a data-toggle="modal" href="#new-item" class="btn" style="float:right;margin-top:15px;">+ new item</a><br><br>
+        {{else:}}
+            <a data-toggle="modal" href="#login-or-signup" class="btn" style="float:right;margin-top:15px;">+ new item</a><br><br>
+        {{pass}}
+        <div style="clear:both;"></div>
+        <br>
     </div>
 </div>
 <div class="centered-width">
@@ -119,43 +128,81 @@ $(document).ready(function(){
 </div>
 <div id="left">
     <a id="collapse-left"> <h5 style="margin:0px;padding:3px;" title="minimize"> << </h5> </a>
-    <p>price range</p>
-    <p>markets</p>
-    <p>local items</p>
-    <p>epoint verified items</p>
-    <p>deliveryfor items</p>
-    <p>services</p>
-
-
-
-    <div style="margin-right:16px;" id="div_sidebar_add_tag"><input name = "sidebar_add_tag" type="text" id="sidebar_add_tag_form" /></div><br>   
-
-    <hr style="margin-top:10px;"><br>
-    <div id="tag-list">
-        {{for tag in reversed(tag_item_post_list_sorted_by_total_count):}}
-            <div id="tag-list-item" style="margin-right:15px;font-family:ubuntu;">                         
-                <a href="/tags/{{=tag[0]}}" >{{=tag[0]}}</a>
-                <a style="color:rgb(210,210,210);" href="/tags/{{=tag[0]}}"> ( {{=tag[1]}} ) </a>
-                <a id="plus-{{=tag[0]}}" class="filter_tag_item" onclick="add_tag_sidebar('{{=tag[0]}}');" >+</a>                        
-                <script>
-                        function add_tag_sidebar(tag){
-                            if ($('#sidebar_add_tag_form').tagExist(tag)) {
-                                $('#sidebar_add_tag_form').removeTag(tag);
-                            }
-                            else{
-                                $('#sidebar_add_tag_form').addTag(tag);
-                            }
-                        }
-                    </script>
-            </div>
-        {{pass}}
-        <br>
-        <p style="text-align:center;"><a>view more</a></p>
+    <br>
+    <h4>filters</h4>
+    <hr>
+    <div style="margin-right:15px;">
+        <ul class="nav nav-pills nav-stacked" data-tabs="tabs">
+            <li id="markets-tab-tab" class="active" style=""><a href="#markets-tab" data-toggle="tab">markets</a></li>
+            <li id="tags-tab-tab"><a href="#tags-tab" data-toggle="tab">tags</a></li>  
+            <li id="other-tab-tab"><a href="#other-tab" data-toggle="tab">other</a></li>  
+        </ul>
     </div>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="markets-tab">
+            <div style="margin-right:16px;" id="div_sidebar_add_market"><input name = "sidebar_add_market" type="text" id="sidebar_add_market_form" /></div><br>   
+        <hr style="margin-top:10px;"><br>
+        <div id="tag-list">
+            {{for market in reversed(item_post_market_list):}}
+                <div id="tag-list-item" style="margin-right:15px;font-family:ubuntu;">                         
+                    <a href="/market/{{=market}}/" >{{=market}}</a>
+                    <a style="color:rgb(210,210,210);" href=""> (  ) </a>
+                    <a id="plus-" class="filter_tag_item" onclick="add_tag_sidebar('market');" >+</a>                        
+                    <script>
+                            function add_tag_sidebar(market){
+                                if ($('#sidebar_add_tag_form').tagExist(market)) {
+                                    $('#sidebar_add_tag_form').removeTag(market);
+                                }
+                                else{
+                                    $('#sidebar_add_tag_form').addTag(market);
+                                }
+                            }
+                        </script>
+                </div>
+            {{pass}}
+            <br>
+            <p style="text-align:center;"><a>view more</a></p>
+        </div>
+        </div>
+        <div class="tab-pane" id="tags-tab">
+            <div style="margin-right:16px;" id="div_sidebar_add_tag"><input name = "sidebar_add_tag" type="text" id="sidebar_add_tag_form" /></div><br>   
+            <hr style="margin-top:10px;"><br>
+            <div id="tag-list">
+                {{for tag in reversed(tag_item_post_list_sorted_by_total_count):}}
+                    <div id="tag-list-item" style="margin-right:15px;font-family:ubuntu;">                         
+                        <a href="/tags/{{=tag[0]}}" >{{=tag[0]}}</a>
+                        <a style="color:rgb(210,210,210);" href="/tags/{{=tag[0]}}"> ( {{=tag[1]}} ) </a>
+                        <a id="plus-{{=tag[0]}}" class="filter_tag_item" onclick="add_tag_sidebar('{{=tag[0]}}');" >+</a>                        
+                        <script>
+                                function add_tag_sidebar(tag){
+                                    if ($('#sidebar_add_tag_form').tagExist(tag)) {
+                                        $('#sidebar_add_tag_form').removeTag(tag);
+                                    }
+                                    else{
+                                        $('#sidebar_add_tag_form').addTag(tag);
+                                    }
+                                }
+                            </script>
+                    </div>
+                {{pass}}
+                <br>
+                <p style="text-align:center;"><a>view more</a></p>
+            </div>
+        </div>
+        <div class="tab-pane" id="other-tab">
+            <hr>
+            <input type="text" name="low price" value="x" style="width:20px;"> to <input type="text" name="high price" value="x" style="width:20px;">
+            <p>within</p><input type="text" name="distance" value="x" style="width:20px;"><p>miles</p>
+            <input type="checkbox" name="epoint-verified" value="true"><p>epoint verified items</p>
+            <input type="checkbox" name="deliveryfor" value="true"><p>deliveryfor items</p>        
+        </div>
+    </div>
+
+
 </div>
 <div id="right">
-    <a data-toggle="modal" href="#new-item" class="btn">+ new item</a><br><br>
-    <div style="border:1px solid rgb(235,235,235);background-color:rgb(246,250,255);padding:15px;" id="ad_block">
+    <div style="border:1px solid rgb(235,235,235);background-color:rgb(246,250,255);padding:15px;margin-top:15px;" id="ad_block">
         <a class="close" id="close-ad" href="#">&times;</a>
         <div id="promoted_list">
             {{for thread in range(5):}}
@@ -166,24 +213,73 @@ $(document).ready(function(){
     </div>
 </div>
 <div id="content">
-	<!--<h3>nearby deliveryfor items</h3>
-	<h3>epoint verified items</h3>
-    <br><br>-->
-    <a id="view-list"><i class="icon-align-justify"></i></a>
-    <a id="view-table"><i class="icon-th"></i></a>
-    <div id="item-list-container">
-    	{{for item_post in item_post_list:}}
-    		<h4><a href="/thread/{{=item_post['url_title']}}">{{=item_post['title']}}</a></h4>
+    <br>
+    <div class="dropdown" style="float:right;margin-right:15px;">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">sort by: <b style="margin-left:5px;"class="caret"></b></a>
+        <ul class="dropdown-menu pull-right" style="left:auto;width:158px;min-width:0px;" role="menu" aria-labelledby="dLabel">
+            <li><a tabindex="-1" href="#">most recent</a></li>
+            <li><a tabindex="-1" href="#">relevancy</a></li>
+            <li><a tabindex="-1" href="#">highest price</a></li>
+            <li><a tabindex="-1" href="#">lowest price</a></li>
+        </ul>
+    </div>
+    <div class="btn-toolbar" style="margin-left:15px;float:left;">
+        <div class="btn-group">
+            <a class="btn active" id="view-list"><i class="icon-align-justify"></i></a>
+            <a class="btn" id="view-table"><i class="icon-th"></i></a>
+        </div>
+    </div>
+    <hr><br>
+
+    <div id="item-list-container" style="">
+    	{{for count, item_post in enumerate(item_post_market_list1):}}
+            {{image=db(db.item_post_image.item_post_id == item_post[0]['id']).select()}}
+            {{try:}}
+                {{image = image[0]['picture']}}
+                <img src="{{=URL('download',args=image)}}" style="width:64px;height:64px;float:left;" class="img-polaroid" />
+            {{except IndexError:}}
+                <img style="width:64px;height:64px;float:left;" class="img-polaroid" src="/epointme/static/images/noimage-icon.png"/>
+            {{pass}}
+
+    		<h4 style="float:left;margin-left:15px;"><a href="/thread/{{=item_post[0]['url_title']}}">{{=item_post[0]['title']}}</a></h4>
+            <div class="dropdown" style="float:right;margin-right:15px;margin-left:15px;">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">markets<b style="margin-left:5px;"class="caret"></b></a>
+                <ul class="dropdown-menu pull-right" style="left:auto;width:158px;min-width:0px;" role="menu" aria-labelledby="dLabel">
+                    {{for market in item_post[1]:}}
+                        <li><a tabindex="-1" href="#">{{=market[0][0]['title']}},{{=market[1]}} </a></li>
+                    {{pass}}
+                </ul>
+            </div>
+            <h5 style="float:right;margin-left:15px;"><a>dislike</a></h5>
+            <h5 style="float:right;margin-left:15px;"><a>like</a></h5>
+
+            <br><br><hr>
     	{{pass}}
     </div>
     <div id="item-block-list-container" style="display:none;">
-        {{for item_post in item_post_list:}}
+        {{for item_post in item_post_market_list1:}}
+
             <div id="item-block-list-item">
-                <h4><a href="/thread/{{=item_post['url_title']}}">{{=item_post['title']}}</a></h4>
-                <a href="/marketplace/"><img class="img-polaroid" src="/epointme/static/images/noimage-icon.png"/></a>
-                <h4><a href="/thread/{{=item_post['url_title']}}">price / available markets</a></h4>
-                <h4><a href="/thread/{{=item_post['url_title']}}">comments (x)</a></h4>
-                <h4><a href="/thread/{{=item_post['url_title']}}">like / dislike</a></h4>
+                <h4><a href="/thread/{{=item_post[0]['url_title']}}">{{=item_post[0]['title']}}</a></h4>
+                <h4><a href="/thread/{{=item_post[0]['url_title']}}">like / dislike</a></h4>
+
+
+                {{image=db(db.item_post_image.item_post_id == item_post[0]['id']).select()}}
+                {{try:}}
+                    {{image = image[0]['picture']}}
+                    <img src="{{=URL('download',args=image)}}" style="width:128px;height:128px;float:left;" class="img-polaroid" />
+                {{except IndexError:}}
+                    <img style="width:128px;height:128px;float:left;" class="img-polaroid" src="/epointme/static/images/noimage-icon.png"/>
+                {{pass}}
+
+
+                <div class="dropdown" style="float:right;margin-right:15px;margin-left:15px;">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">markets<b style="margin-left:5px;"class="caret"></b></a>
+                    <ul class="dropdown-menu pull-right" style="left:auto;width:158px;min-width:0px;" role="menu" aria-labelledby="dLabel">
+                        <li><a tabindex="-1" href="#">hi</a></li>
+                    </ul>
+                </div>
+                <h4><a href="/thread/{{=item_post[0]['url_title']}}">comments (x)</a></h4>
             </div>
         {{pass}}
     </div>
@@ -209,4 +305,22 @@ $(document).ready(function(){
 
 <script>
     $("#new-item").draggable({handle:"#new-item-header", cursor:"move"}); 
+    $("#view-list").click(function() {
+        if ($(this).hasClass("active")){}
+        else{
+            $(this).addClass("active");
+            $("#view-table").removeClass("active");
+            $("#item-block-list-container").fadeToggle(); 
+            $("#item-list-container").fadeToggle();
+        }
+    });
+    $("#view-table").click(function() {
+        if ($(this).hasClass("active")){}
+        else{
+            $(this).addClass("active");
+            $("#view-list").removeClass("active");
+            $("#item-block-list-container").fadeToggle(); 
+            $("#item-list-container").fadeToggle();
+        }
+    });
 </script>

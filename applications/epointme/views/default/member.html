@@ -8,17 +8,46 @@
         margin-left:6%;
         margin-right:6%;
     }
+    #contentwrapper{width: 100%;}               
+    #content { //margin: 0 280px 0 180px; /*Margins for content column. Should be "0 RightColumnWidth 0 LeftColumnWidth*/}
+    #right { 
+
+            float: right;
+            width: 255px;
+            border-left:1px solid rgb(238,238,238);
+            border-bottom:1px solid rgb(238,238,238);
+            padding-left:15px;
+            padding-right:15px;
+            padding-bottom:15px;
+    }
+    #left { 
+            float: left;
+            width: 175px;
+            border-right:1px solid rgb(238,238,238);
+            border-bottom:1px solid rgb(238,238,238);
+            padding-left:15px;
+            padding-bottom:15px; 
+    }
 </style>
 <div id="header-index-container">
     <div id="header-index">
 		<br><img style="height:70px;float:left;" class="img-polaroid" src="/lol/"/><h3 style="float:left;margin-left:15px;">{{=member_from_url['username']}}</h3><br>
-		<a class="btn" style="float:right;">follow</a>
+
+    {{if auth.is_logged_in():}}
+        <a class="btn" style="float:right;">follow</a>
+
+    {{else:}}
+        <a class="btn" style="float:right;" data-toggle="modal" href="#login-or-signup">follow</a>
+    {{pass}}
+
+
+
     </div>
     <div style="clear:both;"></div>
     <br>
 </div>
 
-<div class="centered-width">
+<div id="left">
 
 <h5>facebook</h5>
 <h5>twitter</h5>
@@ -27,29 +56,44 @@
 <h5>bankingfor</h5>
 <h5>voetr</h5>
 
-<br><br>
-<h5>total value:</h5>
-<h5>graph when expand</h5>
-
-<br><br>
-<h4>sent transaction list</h4>
-{{=sent_transaction_from_member}}
-
-<br><br><br>
-
-<h4>recieve transaction list</h4>
-{{=recieve_transaction_from_member}}
-
-<br><br><br>
-
-<h4>member info</h4>
-<h4>member info</h4>
-<h4>member post</h4>
-
-{{for x in range(15):}}
-    <p class="lead"> content / post {{=x}}</p>
+<h5>followers</h5>
+{{for x in range(5):}}
+    <p class="lead">{{=x}}</p>
 {{pass}}
+<h5>following</h5>
+{{for x in range(5):}}
+    <p class="lead">{{=x}}</p>
+{{pass}}
+<br><hr>
+</div>
 
+<div id="contentwrapper">
+    <div id="content">
+        <h5>total value:</h5>
+        <h5>graph when expand</h5>
+
+    <!--<ul class="nav nav-tabs">
+        <li><a href="#home" data-toggle="tab">feed</a></li>
+        <li><a href="#profile" data-toggle="tab">transactions</a></li>
+    </ul>-->
+
+    filters<br><br>
+
+    {{=SQLFORM(db.item_post)}}
+
+    <br><br>
+
+    <br><br>
+    <h4>sent transaction list</h4>
+    {{=sent_transaction_from_member}}
+
+    <br><br><br>
+
+    <h4>recieve transaction list</h4>
+    {{=recieve_transaction_from_member}}
+
+    <br><br><br>
+    </div>
 </div>
 
 

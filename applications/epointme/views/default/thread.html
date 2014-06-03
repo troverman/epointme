@@ -56,7 +56,6 @@ label#thread_comment_comment_content__label{display:none}
     <form style="display:none"><input id ="thread_like" name="thread_like-{{=thread_by_url[0]['id']}}" value="{{=thread_by_url[0]['id']}}" type="hidden"/></form> 
     <form style="display:none"><input id ="thread_dislike" name="thread_dislike-{{=thread_by_url[0]['id']}}" value="{{=thread_by_url[0]['id']}}" type="hidden"/></form>                                 
     <h2 style="float:left;margin-left:15px;"><a>0</a></h2>
-    <h5 style="float:left;margin-left:15px;"><a>price in different markets</a></h5>
 
     <div style="float:right;margin-right:15px;" id="thread-item-dislike-{{=thread_by_url[0]['id']}}"><a style="margin-left:15px;" onclick="ajax('ajax_dislike_thread', ['thread_dislike-{{=thread_by_url[0]['id']}}'], ':eval');">dislike</a></div>
     <div style="float:right;margin-right:15px;" id="thread-item-like-{{=thread_by_url[0]['id']}}"><a style="margin-left:15px;" onclick="ajax('ajax_like_thread', ['thread_like-{{=thread_by_url[0]['id']}}'], ':eval');">like</a></div>
@@ -65,6 +64,11 @@ label#thread_comment_comment_content__label{display:none}
     <br><br>
     <h5 style="float:right;margin-right:15px;"><a data-toggle="modal" href="#thread-stats">stats</a></h5>
     <h5 style="float:right;margin-right:15px;"><a data-toggle="modal" href="#thread-stats">info</a></h5>
+
+    <h5 style="float:left;margin-left:15px;"><a>posted prices</a></h5>
+        <h5 style="float:left;margin-left:15px;"><a>convertable prices through the exchange</a></h5>
+
+
 
     <div style="clear:both;"></div>
     <hr><br>
@@ -131,6 +135,115 @@ label#thread_comment_comment_content__label{display:none}
         }
     )}}
 </div>
+
+
+<br><br>
+
+<a id="expand">comment</a>
+    
+    <div id="form"><br>
+        <div style="padding-left:15px;">
+            <div id="input-options" style="background-color:rgb(220,220,220);">
+                <div class="dropdown" style="float:left;margin-right:10px;">
+                    <a data-toggle="modal" href="#format-editor-modal" onclick="selection()">format</a>
+                </div>
+                <div style="float:left;margin-right:10px;">  
+                    <a class="" data-toggle="modal" href="#insert-editor-modal">insert</a>                          
+                </div>
+                <div class="dropdown" style="float:left;margin-right:10px;">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">view<b style="margin-right:5px;"class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a onclick="set_editor_view('ShowBlocks')">blocks</a></li>
+                        <li><a onclick="set_editor_view('Maximize')">fullscreen</a></li>
+                        <li><a onclick="set_editor_view('Source')">source</a></li>
+                    </ul>
+                </div>
+            </div>
+            <br>
+            {{=form_create_comment_root}}
+        </div>
+    </div>
+    <hr>
+    {{def comment_crawl(comment_id, margin):}}
+        {{comments_with_parent_id = db((db.item_post_comment.parent_comment_id == comment_id) & (db.item_post_comment.item_post_id == thread_by_url[0]['id'])).select() }}
+        {{for comment in comments_with_parent_id:}}
+            <div id = "comment-{{=comment['id']}}" style="margin-left:{{=margin}}px;">  
+                <div id = "comment-user">
+                    {{if comment['user_id'] is None:}}
+                        <a>anonymous</a><br>
+                    {{else:}}
+                        <a>{{=comment['user_id']}}</a><br>
+                    {{pass}}
+                </div>
+                    
+                <div id="comment-content">
+                    {{=XML(comment['comment_content'],
+                    sanitize=False,
+                    permitted_tags=['a', 'b', 'blockquote', 'br/', 'i', 'li', 'ol', 'ul', 'p', 'cite', 'code', 'pre', 'img/'],
+                    allowed_attributes={
+                        'a':['href', 'title'], 
+                        'img':['src', 'alt'], 
+                        'blockquote':['type']}
+                    )}}
+                </div>
+                      
+                <div style="">
+                    <a style="margin-left:10px;margin-right:10px;" href="">score</a>
+                    <a style="margin-left:10px;margin-right:10px;" href="">dislike</a>          
+                    <a style="margin-left:10px;margin-right:10px;" href="">like</a>
+                    <a style="margin-left:10px;margin-right:10px;" href="">share</a>
+                    <a style="margin-left:10px;margin-right:10px;" href="">tag</a><hr>
+                </div>
+                                        
+                <a style="" id="comment-expand-{{=comment['id']}}">comment</a>
+                <div id="comment-form-{{=comment['id']}}">
+                    <div id="input-options" style="background-color:rgb(220,220,220);">
+                        <div class="dropdown" style="float:left;margin-right:10px;">
+                            <a data-toggle="modal" href="#format-editor-modal" onclick="selection()">format</a>
+                        </div>
+                        <div style="float:left;margin-right:10px;">  
+                            <a class="" data-toggle="modal" href="#insert-editor-modal">insert</a>                          
+                        </div>
+                        <div class="dropdown" style="float:left;margin-right:10px;">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">view<b style="margin-right:5px;"class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a onclick="set_editor_view('ShowBlocks')">blocks</a></li>
+                                <li><a onclick="set_editor_view('Maximize')">fullscreen</a></li>
+                                <li><a onclick="set_editor_view('Source')">source</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    {{=create_comment_with_id_dict[comment['id']]}}
+
+                </div>
+                <hr>
+                <script>
+                    $("#comment-form-{{=comment['id']}}").hide();
+                    $("#comment-expand-{{=comment['id']}}").click(function() {
+                        $("#comment-form-{{=comment['id']}}").slideToggle();
+                    });
+                </script>
+                <div id = "comment-{{=comment['id']}}-children" style="margin-left:15px;" >
+                    {{if comment_crawl(comment['id'], margin) is None:}}
+                    {{else:}}
+                        <a>sort</a>
+                        <a style="float:right;" href="">comment</a><br><br><hr>
+                        <div style="margin-left:10px;">hmm
+                            {{=comment_crawl(comment['id'], margin + 15)}}
+                        </div>
+                    {{pass}}
+                </div>
+            </div>
+        {{pass}}  
+    {{pass}}
+    
+    {{if comment_crawl('null', 0) is None:}}
+    {{else:}}
+        {{=comment_crawl('null', 0)}}
+    {{pass}}
+</div>
+
+
 
 <br>
 <br>

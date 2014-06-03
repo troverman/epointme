@@ -14,9 +14,19 @@
     }
     #share-footer-container{margin-left:5%;margin-right:5%;}
     #project-list-container{text-align:center;width:100%;}
-    #project-list-item{border:2px solid rgb(180,180,180);display:inline-block;}
-
+    #project-list-item{border:2px solid rgb(180,180,180);display:inline-block;padding:10px;margin:7px;}
+    #project-list-item:hover{border:2px solid rgb(110,110,110);display:inline-block;padding:11px;margin:7px;}
 </style>
+<script>
+$(function() {
+    $('a').click(function(){
+        $('html, body').animate({
+            scrollTop: $( $.attr(this, 'href') ).offset().top
+        }, 500);
+        return false;
+    });
+});
+</script>
 <script type="text/javascript">
     {{an_array=[]}}
     {{import time}}
@@ -98,26 +108,44 @@
 <script language="javascript" type="text/javascript" src="{{=URL(request.application,'static','js/jquery.flot.time.js')}}"></script>
 <script language="javascript" type="text/javascript" src="{{=URL(request.application,'static','js/jquery.thumbnailScroller.js')}}"></script>
 
+<div style="background-image: url(../epointme/static/images/section-bg.png); height: 400px;">
+    <br><br><br>
+    <p style="text-align:center;font-size:48px;color:rgb(200,200,200);">transparent value network</p>
+    <br><br><br>
+    <a href="#exchange" style="margin-left:10%;">
+        <span class="fa-stack fa-lg">
+          <i style="font-size:128px;" class="fa fa-circle fa-stack-2x fa-inverse" id="event-icon"></i>
+          <i style="font-size:64px;margin-top:43px;margin-left:25px;" class="fa fa-exchange fa-stack-1x"></i>
+        </span>
+    </a>
+    <a href="#markets" style="margin-left:10%;">
+        <span class="fa-stack fa-lg">
+          <i style="font-size:128px;" class="fa fa-circle fa-stack-2x fa-inverse" id="event-icon"></i>
+          <i style="font-size:64px;margin-top:43px;margin-left:25px;" class="fa fa-bar-chart-o fa-stack-1x"></i>
+        </span>
+    </a>
+    <a href="#marketplace" style="margin-left:10%;">
+        <span class="fa-stack fa-lg">
+          <i style="font-size:128px;" class="fa fa-circle fa-stack-2x fa-inverse" id="event-icon"></i>
+          <i style="font-size:64px;margin-top:43px;margin-left:25px;" class="fa fa-shopping-cart fa-stack-1x"></i>
+        </span>
+    </a>
+    <p class="lead btn" style="display:block;margin: 0 auto;width:100px;padding:10px;">i love this</p>
+    <br><br><br><br>
+</div>
+
 <div id="header-index-container">
     <div id="header-index"><br>
-        <img style="width:200px;height:200px;" class="img-polaroid" src="/epointme/static/images/noimage-icon.png"/>
         <p class="lead">virtual economy</p>
-        <p class="lead">value is subjective.</p>
-        <p class="lead">anyone can create a market, and everyone valuates it through the exchange.</p>
         <p class="lead">transparent, crowd owned, value based economy.</p>
-        <p class="lead">create a market</p>
-        <p class="lead">purchase in the marketplace</p>
+        <p class="lead">anyone can create a market, and everyone valuates it through the exchange.</p>
         <p class="lead">cracking open the idea of fiat based value.</p>
-        
-        <p style="text-align:center"><i style="font-size:256px;" class="fa fa-chain-broken"></i></p>
-
-        <iframe src="//www.youtube.com/embed/medBPRNlV0w?list=UUNceSFBcgkYqv4QiD374VTQ" frameborder="0" allowfullscreen></iframe>
+        <p style="text-align:right"><i style="font-size:128px;" class="fa fa-chain-broken"></i></p>
     </div>
 </div>
 
 <br>
 <div>
-    <p style="text-align:center"><i style="font-size:256px;" class="fa fa-money fa-spin"></i></p>
     <p style="text-align:center" class="lead">subjective value</p></td>
     <p style="text-align:center" class="lead">transparent value exchange</p></td>
     <p style="text-align:center" class="lead">what is valueable to you?</p></td>
@@ -137,29 +165,34 @@
 
 <br><br>
 
-<div style="background-color:rgb(68, 66, 93)">
+
+<div style="background-attachment:fixed;background-position:0% 117px;background:url('../epointme/static/images/section-bg.png') no-repeat scroll 50% 0px #423F5C">
+<Br><br><br><Br>hihihi</div>
+    
+<div style="background-color:rgb(86, 124, 181);border-top:4px solid rgb(220,220,220);border-bottom:4px solid rgb(220,220,220);">
     <br><br><br>
     <table style="margin-left:auto;margin-right:auto;">
         <tr>
-            <td><p class="lead"><a href="/about/" style="color:rgb(200,200,200);">about</a></p></td>
+            <td><p class="lead"><a href="/about/" style="color:rgb(200,200,200);">transparent value based economy.</a></p></td>
+            <!--<td><p class="lead"><a href="/faq/" style="color:rgb(200,200,200);">faq</a></p></td>
+            <td><p class="lead"><a href="/terms/" style="color:rgb(200,200,200);">terms</a></p></td>
+            <td><p class="lead"><a href="/exchange/" style="color:rgb(200,200,200);">exchange</a></p></td>
             <td><p class="lead"><a href="/mission/" style="color:rgb(200,200,200);">mission</a></p></td>
-            <td><p class="lead"><a href="/transparency/" style="color:rgb(200,200,200);">transparency</a></p></td>
+            <td><p class="lead"><a href="/transparency/" style="color:rgb(200,200,200);">transparency</a></p></td>-->
         </tr>
     </table>
     <br><br><br>
 </div>
-
+<div style="background-image: url(../epointme/static/images/global_map.svg); height: 300px; background-repeat:no-repeat;background-color:rgb(252,252,252);background-position:center;"></div>
 <br><br><br>
-
-
-
+<div class="centered-width">
     <p class="lead">epoint.me is a value market</p>
     <p class="lead">epoint.me valuates us all</p>
     <a href="/transparency/" class="lead">transparent transaction logs; open currency</a>
+</div>
+<br><br><br>
 
-
-
-<div style="background-color:rgb(68, 66, 93)">
+<div id="exchange" style="background-color:rgb(86, 124, 181);border-top:4px solid rgb(220,220,220);border-bottom:4px solid rgb(220,220,220);">
     <br><br><br>
     <p style="text-align:center;" class="lead"><a href="/exchange/" style="color:rgb(200,200,200)">value exchange</a></p> 
     <br><br><br>
@@ -168,17 +201,17 @@
 <div class="centered-width">
     <br><br><br>
     <div>
-        <p style="text-align:center"><i style="font-size:256px;" class="fa fa-refresh fa-spin"></i></p>
+        <p style="text-align:center"><i style="font-size:128px;" class="fa fa-refresh fa-spin"></i></p>
         <br><br>
         <p class="lead">value is subjective.</p>
         <p class="lead">anyone can create a market, and everyone valuates it through the exchange.</p>
         <br><br>
-        <p style="text-align:center"><i style="font-size:256px;" class="fa fa-exchange"></i></p>
+        <p style="text-align:center"><i style="font-size:128px;" class="fa fa-exchange"></i></p>
     </div>
     <br><br><br>
 </div>
 
-<div style="background-color:rgb(68, 66, 93)">
+<div id="markets" style="background-color:rgb(86, 124, 181);border-top:4px solid rgb(220,220,220);border-bottom:4px solid rgb(220,220,220);">
     <br><br><br>
     <p style="text-align:center;color:rgb(200,200,200)" class="lead"><a href="/markets/" style="color:rgb(200,200,200)">markets</a></p> 
     <br><br><br>
@@ -186,42 +219,59 @@
 
 <div class="centered-width">
     <br><br><br>
+    {{for market in market_list[:10]:}}
+        <p class="lead">{{=market['title']}}</p>
+        <p>{{=market['description']}}</p>
+        <br>
+    {{pass}}
+
+
     <div>
         <div id="placeholder" style="width:75%;height:250px;display: table;margin: 0 auto;"></div>
     </div>
     <br><br><br>
 </div>
 
-<div style="background-color:rgb(68, 66, 93)">
+<div id="marketplace" style="background-color:rgb(86, 124, 181);border-top:4px solid rgb(220,220,220);border-bottom:4px solid rgb(220,220,220);">
     <br><br><br>
     <p style="text-align:center;color:rgb(200,200,200)" class="lead"><a href="/marketplace/" style="color:rgb(200,200,200)">marketplace</a></p> 
     <br><br><br>
 </div>
 <br><br><br>
+<div class="centered-width">
+    <p class="lead">marketplace description</p>
+    <p class="lead">marketplace description</p>
+    <p class="lead">picture</p>
+    <p class="lead">marketplace description</p>
+</div>
+<br><br>
     <div id="project-list-container">
         {{for item in item_post_list[:5]:}}
             <div id="project-list-item">
-                <a href="/thread/{{=item['url_title']}}"><p style="text-align:center;">{{=item['title']}}</p></a>
-                <a href="/thread/{{=item['url_title']}}"><img style="width:250px;" class="img-polaroid" src="/epointme/static/images/noimage-icon.png"/></a>
+                <a href="/thread/{{=item['url_title']}}/"><p style="text-align:center;">{{=item['title']}}</p></a>
+                <a href="/thread/{{=item['url_title']}}/"><img style="width:250px;" class="img-polaroid" src="/epointme/static/images/noimage-icon.png"/></a>
             </div>
         {{pass}}
         <br><br>
     </div>
 <br><br><br>
 
-<div style="background-color:rgb(68, 66, 93)">
+<div style="background-color:rgb(86, 124, 181);border-top:4px solid rgb(220,220,220);border-bottom:4px solid rgb(220,220,220);">
     <br><br><br>
     <p style="text-align:center;color:rgb(200,200,200)" class="lead"><a href="/pointbank/" style="color:rgb(200,200,200)">pointbank</a></p> 
     <br><br><br>
 </div>
 
-
+<br><br><br>
 <div class="centered-width">
-    <p class="lead">get a loan... pay back with specified points.. akaa charitable points.. interest only in these type of points.</p>
+    <br><br><br>
+    <p class="lead">giving is receiving</p>
+    <p>givingfor</p>
+    <p class="lead">recieve credit.. pay back with specified points.. aka charitable points.. interest only in these type of points.</p>
     <p class="lead">a promise to ourself that value today is even better tomomrrow.</p>
-
-
+    <br><br><br>
 </div>
+<br><br><br>
 
 <div id="share-footer">
     <div id="share-footer-container">

@@ -59,6 +59,8 @@ db.define_table('exchange_put',
    Field('amount_sell', 'string'),
    Field('market_buy', 'string'),
    Field('amount_buy', 'string'),
+   Field('call_expiration', 'datetime'),
+
 )
 
 ################################
@@ -70,6 +72,8 @@ db.define_table('exchange_call',
    Field('amount_buy', 'string'),
    Field('market_sell', 'string'),
    Field('amount_sell', 'string'),
+   Field('put_expiration', 'datetime'),
+
 )
 
 ################################
@@ -78,10 +82,30 @@ db.define_table('exchange_call',
 db.define_table('item_post',
    Field('creator_id', 'string', readable=False, writable=False),
    Field('item_detail', 'string'),
+   Field('item_post_time', 'datetime', default=request.now),
    Field('url_title', 'string'),
    Field('title', 'string'),
    Field('item_content', 'string'),
+   Field('market_array', 'list:string'),
+)
 
+################################
+####item_post_comment###########
+################################ 
+db.define_table('item_post_comment',
+    Field('user_id','reference auth_user', default=auth.user_id, readable=False, writable=False),
+    Field('item_post_id','string', readable=False, writable=False),
+    Field('parent_comment_id','string', readable=False, writable=False),
+    Field('comment_content','string'),
+)
+
+################################
+####item_post_image#############
+################################
+db.define_table('item_post_image',
+    Field('item_post_id', 'string', readable=False, writable=False),
+    Field('picture', 'upload', uploadfield='picture_file'),
+    Field('picture_file', 'blob')
 )
 
 ################################

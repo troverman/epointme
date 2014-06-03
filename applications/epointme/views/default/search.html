@@ -14,3 +14,13 @@
         <br><h3 style="color:rgb(80, 84, 92);font-size:45px;">search</h3><br>
     </div>
 </div>
+
+<h3>{{=request.args(0)}}</h3>
+
+<p>filters</p>
+
+{{for x in range(100):}}
+
+    <h5>result {{=x}}</h5>
+
+{{pass}}
