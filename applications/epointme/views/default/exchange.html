@@ -102,7 +102,14 @@
 </script>
 <div id="header-index-container">
     <div id="header-index">
-        <br><h3 style="color:rgb(80, 84, 92);font-size:45px;">exchange</h3><br>
+        <br><h3 style="color:rgb(80, 84, 92);font-size:45px;float:left;"><i class="fa fa-exchange"></i> exchange</h3><br>
+        {{if auth.is_logged_in():}}
+            <a data-toggle="modal" href="#new-market" class="btn" style="float:right;">+ new entry</a>
+        {{else:}}
+            <a data-toggle="modal" href="#login-or-signup" class="btn" style="float:right;">+ new entry</a>
+        {{pass}}
+        <div style="clear:both;"></div>
+        <br>
     </div>
 </div>
 
@@ -113,7 +120,7 @@
         {{pass}}
     </div>
     <div id="right">
-        <a class="btn">+ new enrty</a>
+        right sidebar
     </div>
     <div id="content">
         <p style="text-align:center"><i style="font-size:256px;" class="fa fa-exchange"></i></p>

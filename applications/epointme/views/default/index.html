@@ -170,7 +170,7 @@ function particle() {
 <!--<div style="background-image: url(../epointme/static/images/section-bg.png); height: 400px;">-->
 <div style="background:none repeat scroll 0% 0% #2C2626;height:400px;">
     <br><br><br>
-    <p style="text-align:center;font-size:48px;color:rgb(200,200,200);">transparent value network</p>
+    <p style="text-align:center;font-size:128px;color:rgb(200,200,200);white-space:nowrap">transparent value network</p>
     <br><br>
 
     <p class="lead" style="color:rgb(200,200,200);text-align:center;">democratizing exchange</p>
@@ -196,11 +196,18 @@ function particle() {
     </a>
     <a href="/about/"><p class="lead btn" style="display:block;margin: 0 auto;width:100px;padding:10px;">learn more</p></a>
 
-
-
     <br><br><br><br>
 </div>
-<div style="min-width:960px;background-color:rgb(200,200,200)" id="iamtest"></div>
+<!--<div style="background-color:rgb(102,220,197)">
+    <br><br><br>
+    <br><br><br>
+    <p class="lead" style="font-size:128px;text-align:center;color:rgb(255,255,255);">transparent value network</p>
+    <br><br><br>
+    <br><br><br>
+</div>-->
+
+
+<div style="min-width:960px;background-color:#6488C4" id="iamtest"></div>
 <div id="header-index-container">
     <div id="header-index"><br>
         <div style="float:right">
@@ -222,7 +229,13 @@ function particle() {
     <p class="lead" style="text-align:center">transparent, crowd owned</p>
     <p style="text-align:center" class="lead">what is valueable to you?</p>
     <p style="text-align:center" class="lead">power to the people</p>
+    <p style="text-align:center" class="lead">valuate all the actions -- powerful apis</p>
 
+   <!-- <p class="lead"><a href="/faq/" style="color:rgb(200,200,200);">faq</a></p>
+    <p class="lead"><a href="/terms/" style="color:rgb(200,200,200);">terms</a></p>
+    <p class="lead"><a href="/exchange/" style="color:rgb(200,200,200);">exchange</a></p>
+    <p class="lead"><a href="/mission/" style="color:rgb(200,200,200);">mission</a></p>
+    <p class="lead"><a href="/transparency/" style="color:rgb(200,200,200);">transparency</a></p>-->
     <hr>
 
     <table style="margin-left:auto;margin-right:auto">
@@ -246,11 +259,6 @@ function particle() {
     <table style="float:left;margin-left:6%">
         <tr>
             <td><p class="lead"><a href="/about/" style="color:rgb(220,220,220);font-size:48px">virtual economy</a></p></td>
-            <!--<td><p class="lead"><a href="/faq/" style="color:rgb(200,200,200);">faq</a></p></td>
-            <td><p class="lead"><a href="/terms/" style="color:rgb(200,200,200);">terms</a></p></td>
-            <td><p class="lead"><a href="/exchange/" style="color:rgb(200,200,200);">exchange</a></p></td>
-            <td><p class="lead"><a href="/mission/" style="color:rgb(200,200,200);">mission</a></p></td>
-            <td><p class="lead"><a href="/transparency/" style="color:rgb(200,200,200);">transparency</a></p></td>-->
         </tr>
     </table>
     <div style="clear:both"></div>
@@ -263,6 +271,9 @@ function particle() {
     <a href="/transparency/" class="lead">open transaction logs</a>
     <br><br>
     <img style="width:250px;" class="img-polaroid" src="/epointme/static/images/noimage-icon.png"/>
+    <div>
+        <div id="placeholder" style="width:75%;height:250px;display: table;margin: 0 auto;"></div>
+    </div>
     <br><br>
 </div>
 <br><br><br>
@@ -283,7 +294,8 @@ function particle() {
         <p class="lead">anyone can create a market, and everyone valuates it through the exchange.</p>
         <p class="lead">commodities etc</p>
         <p class="lead">reevaluating finance</p>
-        <p class="lead"><a href="http://www.bankingfor.com">bankingfor</a> connected</p>
+        <p class="lead"><a href="http://www.bankingfor.com">bankingfor</a> connected, connected to the world's banks</p>
+        <img class="img-polaroid" style="width:256px;" src="/epointme/static/images/photo.jpg"/>
 
     </div>
     <br><br><br>
@@ -294,25 +306,25 @@ function particle() {
     <p style="text-align:left;margin-left:6%" class="lead"><a href="/markets/" style="color:rgb(220,220,220);font-size:48px">markets</a></p> 
     <br><br><br>
 </div>
-
+<div style="background-color:rgb(245, 245, 245);">
 <div class="centered-width">
     <br><br><br>
+    <p class="lead">create your own</p>
+    <p class="lead">demiurge, options, options, equlaity</p>
     <div id="project-list-container">
-        {{for market in market_list[:20]:}}
+        {{for market in market_list[:50]:}}
+            <a href="/market/{{=market['url_title']}}/">
             <div id="project-list-item">
                 <p class="lead">{{=market['title']}}</p>
                 <p>{{=market['description']}}</p>
             </div>
+            </a>
         {{pass}}
     </div>
 
-
-    <div>
-        <div id="placeholder" style="width:75%;height:250px;display: table;margin: 0 auto;"></div>
-    </div>
     <br><br><br>
 </div>
-
+</div>
 <div id="marketplace" style="background-color:rgb(86, 124, 181);border-top:4px solid rgb(220,220,220);border-bottom:4px solid rgb(220,220,220);">
     <br><br><br>
     <p style="text-align:left;margin-left:6%;color:rgb(225,225,225);" class="lead"><a href="/marketplace/" style="color:rgb(220,220,220);font-size:48px">marketplace</a></p> 
@@ -324,10 +336,9 @@ function particle() {
     <p class="lead">abstract valuation</p>
     <img style="width:250px;" class="img-polaroid" src="/epointme/static/images/noimage-icon.png"/>
     <p class="lead">pickup, delivery, deliveryfor, epoint verified</p>
-</div>
-<br><br>
+    <br><br>
     <div id="project-list-container">
-        {{for item in item_post_list[:5]:}}
+        {{for item in item_post_list[:10]:}}
             <div id="project-list-item">
                 <a href="/thread/{{=item['url_title']}}/"><p style="text-align:center;">{{=item['title']}}</p></a>
                 <a href="/thread/{{=item['url_title']}}/"><img style="width:250px;" class="img-polaroid" src="/epointme/static/images/noimage-icon.png"/></a>
@@ -335,6 +346,8 @@ function particle() {
         {{pass}}
         <br><br>
     </div>
+</div>
+
 <br><br><br>
 
 <div style="background-color:rgb(86, 124, 181);border-top:4px solid rgb(220,220,220);border-bottom:4px solid rgb(220,220,220);">

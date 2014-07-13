@@ -90,18 +90,18 @@
     #login-area{
       font-size:14px;
       font-family:ubuntu;
-      color:rgb(235,235,235);
+      color:#D3DDF1;
     }
     #login-area:hover{color:rgb(255,255,255)}
     #logo-epoint{
       float:left;
-      height:30px;
+      height:52px;
       padding-top:22px;
       padding-right:10px;
       padding-bottom:18px;
     }
-    #logo-epoint:hover{background-color:rgb(56,107,158);}
-    #main-content{border-top:3px solid rgb(173, 184, 206);}
+    #logo-epoint:hover{background-color:#596CA0;}
+    #main-content{border-top:3px solid #B1BFCF;}
     #member-icon-area{
       float:right;
       padding-top:23px;
@@ -165,17 +165,17 @@
           <div id="logo-container">
             <a href="/">
               <img id="logo-epoint" src="/epointme/static/images/epoint-logo.png" />
-              <!--<h5 style="float:left;">epoint.me</h5>-->
+              <!--<p style="float:left;margin-top:38px;font-family:ubuntu;font-size:22px;color:rgb(255,255,255);">epoint.me</p>-->
             </a>
           </div>
-          <div id="header-icons" style="margin-top:30px;margin-left:3px;float:left;">
-            <a href="/exchange/"><i id="exchange-icon" class="fa fa-exchange" style="margin-left:15px;"> <p style="font-family:ubuntu;display:inline;">exchange</p></i></a>
-            <a href="/markets/"><i id="courses-icon" class="fa fa-bar-chart-o" style="margin-left:15px;"><p style="font-family:ubuntu;display:inline;"> markets</p></i></a>
-            <a href="/marketplace/"><i id="academies-icon" class="fa fa-shopping-cart" style="margin-left:15px;"><p style="font-family:ubuntu;display:inline;"> marketplace</p></i></a>
-            <a href="/feed/"><i id="feed-icon" class="fa fa-align-justify" style="margin-left:15px;"><p style="font-family:ubuntu;display:inline;"> feed</p></i></a>
+          <div id="search-bar" style="float:left;margin-left:40px;margin-top:35px;">
+            <div class="input-prepend">
+              <span class="add-on"><i class="icon-search"></i></span>
+              <input class="span2" id="prependedInput" type="text" placeholder="search">
+            </div>    
           </div>
           {{if auth.is_logged_in():}}
-            <ul id="member-name-area" class="nav pull-right nav_bar">
+            <ul id="member-name-area" class="nav pull-right nav_bar" style="margin-top:16px">
               <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 <p id="username-text" class="lead"><a id="username-area" href="/member/{{=session.auth.user.username}}">{{=session.auth.user.username}}<i class="fa fa-angle-down" id="angle-down-icon"></i></a></p>
               </a> 
@@ -184,12 +184,7 @@
                     <a href="/account/">
                       <i class="fa fa-user" style="float:left;margin-top:3px;"></i><p style="margin-left:25px;">account</p>
                     </a>
-                </li>
-                <li>
-                <a href="/inbox/">
-                      <i class="fa fa-envelope" style="float:left;margin-top:3px;"></i><p style="margin-left:25px;">inbox</p>
-                    </a>
-                </li>    
+                </li>  
                 <li>
                   <a href="/notifications/">
                     <i class="fa fa-globe" style="float:left;margin-top:3px;"></i><p style="margin-left:25px;">notifications</p>
@@ -208,20 +203,16 @@
                 </li>
               </ul>
             </ul>
-            <div id="member-icon-area">
-              <a href="/notifications/"><i id="notification-icon" class="fa fa-globe"></i></a>
-              <a href="/inbox/"><i id="inbox-icon" class="fa fa-envelope"></i></a>
-            </div>
           {{else:}}
-            <ul id="navbar" class="nav pull-right" style="margin-top:24px;">
+            <ul id="navbar" class="nav pull-right" style="margin-top:40px;">
               <a data-toggle="modal" href="#login-or-signup" id="login-area">login or signup</a>
             </ul>
           {{pass}}
-          <div id="search-bar" style="float:right;margin-right:30px;margin-top:19px;">
-            <div class="input-prepend">
-              <span class="add-on"><i class="icon-search"></i></span>
-              <input class="span2" id="prependedInput" type="text" placeholder="search">
-            </div>    
+          <div id="header-icons" style="margin-top:40px;margin-left:30px;float:left;">
+            <a href="/exchange/"><i id="exchange-icon" class="fa fa-exchange" style="margin-left:15px;"> <p style="font-family:ubuntu;display:inline;">exchange</p></i></a>
+            <a href="/markets/"><i id="courses-icon" class="fa fa-bar-chart-o" style="margin-left:15px;"><p style="font-family:ubuntu;display:inline;"> markets</p></i></a>
+            <a href="/marketplace/"><i id="academies-icon" class="fa fa-shopping-cart" style="margin-left:15px;"><p style="font-family:ubuntu;display:inline;"> marketplace</p></i></a>
+            <a href="/feed/"><i id="feed-icon" class="fa fa-align-justify" style="margin-left:15px;"><p style="font-family:ubuntu;display:inline;"> feed</p></i></a>
           </div>
         </div>
       </div>
