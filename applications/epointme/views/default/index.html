@@ -14,8 +14,8 @@
     }
     #share-footer-container{margin-left:5%;margin-right:5%;}
     #project-list-container{text-align:center;width:100%;}
-    #project-list-item{border:2px solid rgb(180,180,180);display:inline-block;padding:10px;margin:7px;}
-    #project-list-item:hover{border:2px solid rgb(110,110,110);display:inline-block;padding:11px;margin:7px;}
+    #project-list-item{border:2px solid rgb(180,180,180);display:inline-block;padding:10px;margin:7px;border-radius:5px;}
+    #project-list-item:hover{border:2px solid rgb(110,110,110);display:inline-block;padding:11px;margin:7px;border-radius:5px;}
 </style>
 <script>
 $(function() {
@@ -130,46 +130,46 @@ circle {
 <script>
     $(function() {
 
-var width = Math.max(960, innerWidth),
-    height = Math.max(200, innerHeight);
+        var width = Math.max(960, innerWidth),
+            height = Math.max(200, innerHeight);
 
-var i = 0;
+        var i = 0;
 
-var svg = d3.select("#iamtest").append("svg")
-    .attr("width", '100%')
-    .attr("height", '200px');
+        var svg = d3.select("#iamtest").append("svg")
+            .attr("width", '100%')
+            .attr("height", '200px');
 
 
-svg.append("rect")
-    .attr("width", width)
-    .attr("height", height)
-    .on("ontouchstart" in document ? "touchmove" : "mousemove", particle);
+        svg.append("rect")
+            .attr("width", width)
+            .attr("height", height)
+            .on("ontouchstart" in document ? "touchmove" : "mousemove", particle);
 
-function particle() {
-  var m = d3.mouse(this);
+        function particle() {
+          var m = d3.mouse(this);
 
-  svg.insert("circle", "rect")
-      .attr("cx", m[0])
-      .attr("cy", m[1])
-      .attr("r", 1e-6)
-      .style("stroke", d3.hsl((i = (i + 1) % 360), 1, .5))
-      .style("stroke-opacity", 1)
-    .transition()
-      .duration(2000)
-      .ease(Math.sqrt)
-      .attr("r", 100)
-      .style("stroke-opacity", 1e-6)
-      .remove();
+          svg.insert("circle", "rect")
+              .attr("cx", m[0])
+              .attr("cy", m[1])
+              .attr("r", 1e-6)
+              .style("stroke", d3.hsl((i = (i + 1) % 360), 1, .5))
+              .style("stroke-opacity", 1)
+            .transition()
+              .duration(2000)
+              .ease(Math.sqrt)
+              .attr("r", 100)
+              .style("stroke-opacity", 1e-6)
+              .remove();
 
-  d3.event.preventDefault();
-}
+          d3.event.preventDefault();
+        }
     });
 
 </script>
 
-<!--<div style="background-image: url(../epointme/static/images/section-bg.png); height: 400px;">-->
-<div style="background:none repeat scroll 0% 0% #2C2626;height:400px;">
-    <br><br><br>
+<div style="background-image: url(../epointme/static/images/shattered-island.gif); height: 440px;">
+    <br><br><br><br>
+    <br><br>
     <p style="text-align:center;font-size:128px;color:rgb(200,200,200);white-space:nowrap">transparent value network</p>
     <br><br>
 
@@ -198,17 +198,33 @@ function particle() {
 
     <br><br><br><br>
 </div>
-<!--<div style="background-color:rgb(102,220,197)">
-    <br><br><br>
-    <br><br><br>
-    <p class="lead" style="font-size:128px;text-align:center;color:rgb(255,255,255);">transparent value network</p>
-    <br><br><br>
-    <br><br><br>
-</div>-->
+
+
+<div style="background-color:rgb(124,165,234)">
+    <br><br><br><br>
+        <table style="margin-left:auto;margin-right:auto">
+        <tr>
+            <td><img style="width:128px;height:128px;" class="img-polaroid" src="/epointme/static/images/Infinity.gif"/></td>
+            <td><img style="width:128px;height:128px;" class="img-polaroid" src="/epointme/static/images/bitcoins.jpg"/></td>
+            <td><img style="width:128px;height:128px;" class="img-polaroid" src="/epointme/static/images/dollars.jpeg"/></td>
+            <td><img style="width:128px;height:128px;" class="img-polaroid" src="/epointme/static/images/transparency.png"/></td>
+
+        </tr>
+    </table>
+    <div id="header-search" style="display:block;margin: 0 auto;width:350px; background-color:rgba(0, 0, 0, 0.4);color: white;padding:10px 20px 5px 20px;border-radius:5px;">
+        <input type="text">
+        <div class="btn-group" style="margin-top:0px;">
+            <a href="/search/"><button class="btn" tabindex="-1">submit</button></a>          
+        </div>
+    </div>
+    <br><br><br><br>
+</div>
 
 
 <div style="min-width:960px;background-color:#6488C4" id="iamtest"></div>
-<div id="header-index-container">
+
+
+<div id="header-index-container" class="hmm">
     <div id="header-index"><br>
         <div style="float:right">
             <p style="text-align:right"><i style="font-size:128px;" class="fa fa-chain-broken"></i></p>
@@ -226,19 +242,14 @@ function particle() {
 <div>
 
     <hr>
-    <p class="lead" style="text-align:center">transparent, crowd owned</p>
-    <p style="text-align:center" class="lead">what is valueable to you?</p>
-    <p style="text-align:center" class="lead">power to the people</p>
-    <p style="text-align:center" class="lead">valuate all the actions -- powerful apis</p>
+    <p class="lead" style="text-align:center"><i style="font-size:32px;margin-right:15px;" class="fa fa-search"></i>completly <a href="/transparency/">transparent</a>, crowd owned</p>
+    <p style="text-align:center" class="lead"><i style="font-size:32px;margin-right:15px;" class="fa fa-money"></i>what is valueable to you?</p>
+    <p style="text-align:center" class="lead"><i style="font-size:32px;margin-right:15px;" class="fa fa-check"></i>power to the people</p>
+    <p style="text-align:center" class="lead"><i style="font-size:32px;margin-right:15px;" class="fa fa-exchange"></i>valuate all the actions -- powerful apis</p>
 
-   <!-- <p class="lead"><a href="/faq/" style="color:rgb(200,200,200);">faq</a></p>
-    <p class="lead"><a href="/terms/" style="color:rgb(200,200,200);">terms</a></p>
-    <p class="lead"><a href="/exchange/" style="color:rgb(200,200,200);">exchange</a></p>
-    <p class="lead"><a href="/mission/" style="color:rgb(200,200,200);">mission</a></p>
-    <p class="lead"><a href="/transparency/" style="color:rgb(200,200,200);">transparency</a></p>-->
     <hr>
 
-    <table style="margin-left:auto;margin-right:auto">
+    <!--<table style="margin-left:auto;margin-right:auto">
         <tr>
             <td><img style="width:128px;height:128px;" class="img-polaroid" src="/epointme/static/images/Infinity.gif"/></td>
             <td><img style="width:128px;height:128px;" class="img-polaroid" src="/epointme/static/images/bitcoins.jpg"/></td>
@@ -246,7 +257,7 @@ function particle() {
             <td><img style="width:128px;height:128px;" class="img-polaroid" src="/epointme/static/images/transparency.png"/></td>
 
         </tr>
-    </table>
+    </table>-->
 
 
 </div>
@@ -295,6 +306,8 @@ function particle() {
         <p class="lead">commodities etc</p>
         <p class="lead">reevaluating finance</p>
         <p class="lead"><a href="http://www.bankingfor.com">bankingfor</a> connected, connected to the world's banks</p>
+        <p class="lead">value is not just the 'block' of one monoist sense of value. it is an indifference curve of an infinite array of quantized value set.</p>
+        <p class="lead">x = y + Z + ... + n</p>
         <img class="img-polaroid" style="width:256px;" src="/epointme/static/images/photo.jpg"/>
 
     </div>
@@ -310,7 +323,9 @@ function particle() {
 <div class="centered-width">
     <br><br><br>
     <p class="lead">create your own</p>
+    <p class="lead">crowdfunding, etc</p>
     <p class="lead">demiurge, options, options, equlaity</p>
+    <br><hr><br>
     <div id="project-list-container">
         {{for market in market_list[:50]:}}
             <a href="/market/{{=market['url_title']}}/">
@@ -341,7 +356,7 @@ function particle() {
         {{for item in item_post_list[:10]:}}
             <div id="project-list-item">
                 <a href="/thread/{{=item['url_title']}}/"><p style="text-align:center;">{{=item['title']}}</p></a>
-                <a href="/thread/{{=item['url_title']}}/"><img style="width:250px;" class="img-polaroid" src="/epointme/static/images/noimage-icon.png"/></a>
+                <a href="/thread/{{=item['url_title']}}/"><img style="width:128px;" class="img-polaroid" src="/epointme/static/images/noimage-icon.png"/></a>
             </div>
         {{pass}}
         <br><br>
@@ -352,7 +367,7 @@ function particle() {
 
 <div style="background-color:rgb(86, 124, 181);border-top:4px solid rgb(220,220,220);border-bottom:4px solid rgb(220,220,220);">
     <br><br><br>
-    <p style="text-align:left;margin-left:6%;color:rgb(225,225,225);" class="lead"><a href="/pointbank/" style="color:rgb(200,200,200)">pointbank</a></p> 
+    <p style="text-align:left;margin-left:6%" class="lead"><a href="/pointbank/" style="color:rgb(220,220,220);font-size:48px">other stuff</a></p> 
     <br><br><br>
 </div>
 
@@ -363,18 +378,23 @@ function particle() {
     <p>givingfor</p>
     <p class="lead">recieve credit.. pay back with specified points.. aka charitable points.. interest only in these type of points.</p>
     <p class="lead">a promise to ourself that value today is even better tomomrrow.</p>
+    <p class="lead"><a href="http://www.bankingfor.com/">bankingfor</a></p>
+
     <br><br><br>
 </div>
 <br><br><br>
 
+
+
+
 <div id="share-footer">
     <div id="share-footer-container">
-        <p class="lead" style="float:left;">share plox</p>
-        <p style="float:right;" class="lead">get the app</p><br>
+        <p class="lead" style="float:left;">share</p>
+        <p style="float:right;" class="lead">get the app</p><br><br>
         <a style="float:right;" href=""><img class="social" style="height:48px;" src="/epointme/static/images/app_store_icon.png" /></a>
         <a style="float:right;" href=""><img class="social" style="height:48px;" src="/epointme/static/images/android_marketplace_icon.png" /></a>
     </div>
     <div style="clear:both"></div>
 </div>
 
-<br><br><br><br>
+<br><br><br>

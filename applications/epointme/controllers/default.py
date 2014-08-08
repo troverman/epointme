@@ -34,7 +34,7 @@ def feed():
 ####index###############
 ########################
 def index():
-    response.flash = T("cracking open the idea of fiat based value")
+    response.flash = T("cracking open the idea value")
     item_post_list = db(db.item_post).select().as_list()
     market_list = db(db.market).select()
 

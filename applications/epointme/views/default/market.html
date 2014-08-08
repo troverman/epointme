@@ -36,12 +36,39 @@
       
     </ul>
 
+
+<br><br><br>
+<!--<div id="latest-transactions">
+    {{for x in range(30):}}
+        <h5>transaction {{=x}}</h5>
+    {{pass}}
+</div>
+-->
+
     <div class="tab-content">
         <div class="tab-pane active" id="exchange-tab">
             <p class="lead">exchange put</p>
-            {{=exhange_put_list}}
+
+
+
+            {{for put in exhange_put_list:}}
+                {{=db(db.market.id == market_sell).select()}}
+                {{=put['market_sell']}}
+                {{=put['amount_sell']}}
+                {{=db(db.market.id == market_buy).select()}}
+                {{=put['market_buy']}}
+                {{=put['amount_buy']}}
+            {{pass}}
+
+
             <p class="lead">exchange call</p>
+
+
+
             {{=exhange_call_list}}
+
+
+
         </div>
         <div class="tab-pane" id="marketplace-tab">
             {{for item in item_post_market_list1:}}

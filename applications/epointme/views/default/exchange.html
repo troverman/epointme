@@ -119,6 +119,11 @@
             <h3><a href="/market/{{=market['title']}}/">{{=market['title']}}</a></h3>
         {{pass}}
     </div>
+    <div id="left">
+        {{for market in market_list:}}
+            <h3><a href="/market/{{=market['title']}}/">{{=market['title']}}</a></h3>
+        {{pass}}
+    </div>
     <div id="right">
         right sidebar
     </div>
